@@ -27,7 +27,7 @@
   </BoolProperty>
   <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Description="If true, the commands emcc is invoked with are printed to stdout during linking." Category="General" />
 
-  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" />
+  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" Switch="l" />
   
   <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />
   

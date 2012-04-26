@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.a</TargetExt>
+    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
