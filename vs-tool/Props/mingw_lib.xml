@@ -3,10 +3,12 @@
   <Rule.Categories>
     <Category Name="General" DisplayName="General" />
   </Rule.Categories>
+
+  <StringProperty Subtype="file" Name="OutputFile" DisplayName="Output File" Category="General" Switch="rcs" SwitchPrefix="" />
+
   <Rule.DataSource>
     <DataSource Persistence="ProjectFile" ItemType="Lib" Label="" HasConfigurationCondition="true" />
   </Rule.DataSource>
   
-  <StringProperty Subtype="file" Name="OutputFile" DisplayName="Output File" Category="General" Switch="o" />
   <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Category="General" />  
 </Rule>

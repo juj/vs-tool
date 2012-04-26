@@ -4,6 +4,6 @@
     <PlatformShortName>MinGW</PlatformShortName>
     <GccCompiler>gcc.exe</GccCompiler>
     <GccLinker>gcc.exe</GccLinker>
-    <GccLibrarian>gcc.exe</GccLibrarian>
+    <GccLibrarian>ar.exe</GccLibrarian>
   </PropertyGroup>
 </Project>

@@ -16,6 +16,11 @@
     <TargetExt>.o</TargetExt>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.a</TargetExt>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.bc</TargetExt>
@@ -27,7 +32,7 @@
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryDLL'">
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>

@@ -50,7 +50,7 @@
     <PropertyPageSchema Include="$(VCTargetsPath)\Platforms\vs-tool\Props\link.xml" Condition="'$(PlatformToolset)' == 'clang'" />
     <PropertyPageSchema Include="$(VCTargetsPath)\Platforms\vs-tool\Props\emcc_link.xml" Condition="('$(ConfigurationType)' == 'Application' or '$(ConfigurationType)' == 'HTMLPage') and '$(PlatformToolset)' == 'emcc'" />
     <PropertyPageSchema Include="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_link.xml" Condition="('$(ConfigurationType)' == 'Application') and '$(PlatformToolset)' == 'mingw'" />
-    <PropertyPageSchema Include="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />
+    <PropertyPageSchema Include="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary' or '$(ConfigurationType)' == 'StaticLibraryA' or '$(ConfigurationType)' == 'StaticLibraryLib'" />
   </ItemGroup>
 
   <ItemGroup>
