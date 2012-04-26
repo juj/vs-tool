@@ -1,0 +1,52 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\ImportBefore\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\vs-tool\ImportBefore')" />
+  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.EnvVars.props" />
+  <Import Condition="(exists('$(VCTargetsPath)\Platforms\vs-tool\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.vs-tool.$(PlatformToolset).props'))" Project="$(VCTargetsPath)\Platforms\vs-tool\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.vs-tool.$(PlatformToolset).props"/>
+  <PropertyGroup>
+    <DebuggerFlavor Condition="'$(DebuggerFlavor)'==''">WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.ToolPaths.props" />
+  <PropertyGroup>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <GenerateManifest>false</GenerateManifest>  
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.o</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.bc</TargetExt>
+    <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryDLL'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'emcc'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.js</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' != 'emcc'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.html</TargetExt>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.ToolDefaults.props" />
+  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\ImportAfter\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\vs-tool\ImportAfter')" />
+</Project>

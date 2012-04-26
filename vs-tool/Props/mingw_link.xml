@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Rule Name="Link" PageTemplate="tool" DisplayName="MinGW Linker" SwitchPrefix="-" Order="20" xmlns="http://schemas.microsoft.com/build/2009/properties" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+ 
+  <Rule.Categories>
+    <Category Name="General" DisplayName="General" />
+    <Category Name="Input" DisplayName="Input" />
+    <Category Name="Advanced" DisplayName="Advanced" />
+    <Category Name="Command Line" DisplayName="Command Line" Subtype="CommandLine" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" ItemType="Link" Label="" HasConfigurationCondition="true" />
+  </Rule.DataSource>
+  
+  <StringProperty Subtype="file" Name="OutputFile" DisplayName="Output File" Category="General" Switch="o" Separator=" " />
+  <StringListProperty Subtype="folder" Name="AdditionalLibraryDirectories" DisplayName="Additional Library Directories (-L)" Category="General" Switch="L" />
+
+  <BoolProperty Name="LinkLibraryDependencies" DisplayName="Link Library Dependencies" Description="Specifies whether or not library outputs from project dependencies are automatically linked in." Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.LinkLibraryDependencies">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+  <BoolProperty Name="UseLibraryDependencyInputs" DisplayName="Use Library Dependency Inputs" Description="Specifies whether or not the inputs to the librarian tool are used rather than the library file itself when linking in library outputs of project dependencies." Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.UseLibraryDependencyInputs">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+  <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Description="If true, the commands emcc is invoked with are printed to stdout during linking." Category="General" />
+
+  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" />
+  
+  <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />
+  
+</Rule>

@@ -1,0 +1,9 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PlatformToolsetVersion>mingw</PlatformToolsetVersion>
+    <PlatformShortName>MinGW</PlatformShortName>
+    <GccCompiler>gcc.exe</GccCompiler>
+    <GccLinker>gcc.exe</GccLinker>
+    <GccLibrarian>gcc.exe</GccLibrarian>
+  </PropertyGroup>
+</Project>
