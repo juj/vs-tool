@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <!-- Tools that show up in the IDE property pages for exe and dll projects -->
-  <ItemGroup Condition="('$(ConfigurationType)' == 'Application' or '$(ConfigurationType)' == 'DynamicLibrary')">
+  <ItemGroup Condition="('$(ConfigurationType)' == 'Application' or '$(ConfigurationType)' == 'DynamicLibrary' or '$(ConfigurationType)' == 'HTMLPage')">
     <ProjectTools Include="Link"/>
     <ProjectTools Include="CustomBuildStep"/>
   </ItemGroup>
