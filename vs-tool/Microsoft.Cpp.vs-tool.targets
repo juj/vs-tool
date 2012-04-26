@@ -207,30 +207,6 @@
     
   </Target>
 
-  <!-- *******************************************************************************************
-        AntBuild
-       ******************************************************************************************* -->
-
-  <!-- Hook in Ant Build if this is an application project -->
-  <PropertyGroup Condition="'$(ConfigurationType)'=='Application'">
-    <BuildLinkTargets>
-      $(BuildLinkTargets);
-      _BuildApk;
-    </BuildLinkTargets>
-    <BuildLinkAction>$(CommonBuildOnlyTargets);$(BeforeBuildLinkTargets);$(BuildLinkTargets);$(AfterBuildLinkTargets)</BuildLinkAction>
-  </PropertyGroup>
-    
-  <Target Name="_BuildApk"
-          DependsOnTargets="Link;">
-  </Target>
-  
-  <PropertyGroup>
-    <PrepareForBuildDependsOn>PlatformPrepareForBuild;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
-    <PrepareForBuildDependsOn Condition="'$(ConfigurationType)'=='Application'">PlatformPrepareForBuild;$(PrepareForBuildDependsOn)</PrepareForBuildDependsOn>
-  </PropertyGroup>
-
-
-
   <!-- Override the Microsoft.CppBuild.targets stuff -->
   <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.CppBuild.targets" />
   
