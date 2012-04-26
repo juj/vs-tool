@@ -85,8 +85,8 @@
       </Lib>
     </ItemGroup>
 
-    <GCCLib
-        BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
+    <GCCLib Condition="'$(PlatformToolset)' != 'emcc'
+      " BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
 		    Sources                        ="@(Lib)"
 
         OutputFile                     ="%(Lib.OutputFile)"
@@ -108,6 +108,30 @@
       >
       	<Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
     </GCCLib>
+
+    <ClangLib Condition="'$(PlatformToolset)' == 'emcc'
+      " BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
+		    Sources                        ="@(Lib)"
+
+        OutputFile                     ="%(Lib.OutputFile)"
+
+        TrackerLogDirectory            ="%(Lib.TrackerLogDirectory)"
+
+        TLogReadFiles                  ="@(LIBTLogReadFiles)"
+        TLogWriteFiles                 ="@(LIBTLogWriteFiles)"
+        ToolExe                        ="$(LIBToolExe)"
+        ToolPath                       ="$(LIBToolPath)"
+        TrackFileAccess                ="$(TrackFileAccess)"
+        MinimalRebuildFromTracking     ="%(Lib.MinimalRebuildFromTracking)"
+
+        AcceptableNonZeroExitCodes     ="%(Lib.AcceptableNonZeroExitCodes)"
+
+        EchoCommandLines               ="%(Lib.EchoCommandLines)"
+        GCCToolPath                    ="$(GccLibrarian)"
+        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_lib.xml"
+      >
+      <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
+    </ClangLib>
 
     <Message Condition="'$(LibSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
     
