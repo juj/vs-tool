@@ -41,6 +41,9 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'emcc'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
+    <LocalDebuggerCommand>$(NODEJS_EXE)</LocalDebuggerCommand>
+    <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
+    <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' != 'emcc'">
@@ -51,6 +54,9 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>
+    <LocalDebuggerCommand>$(EMCC_WEBBROWSER_EXE)</LocalDebuggerCommand>
+    <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
+    <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
 
   <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.ToolDefaults.props" />
