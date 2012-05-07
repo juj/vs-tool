@@ -144,11 +144,11 @@
   <BoolProperty Name="AssemblerOutput" DisplayName="Generate Assembler Output (-S)" Description="If enabled, does not output machine code, but a human-readable assembly of the generated code. TODO: GENERATE .s file instead." Category="Output Files" Switch="S" />
   <BoolProperty Name="RunStaticAnalysis" DisplayName="Run Static Analysis Tool (-analyze)" Description="If enabled, runs clang static analyzer for the source file(s) and outputs it to a .plist file." Category="Output Files" Switch="-analyze" />
 
-  <StringListProperty Subtype="folder" Name="SystemIncludeDirectories" Category="General" Visible="false" Switch="Xclang -isystem" />
+<!--  <StringListProperty Subtype="folder" Name="SystemIncludeDirectories" Category="General" Visible="false" Switch="Xclang -isystem" />
   <StringListProperty Name="SystemPreprocessorDefinitions" Visible="false" Category="Preprocessor" DisplayName="System Preprocessor Definitions (-D)" Switch="D" />
-  <StringListProperty Name="SystemPreprocessorUndefinitions" Visible="false" Category="Preprocessor" DisplayName="System Preprocessor Undefinitions (-U)" Switch="U" />
+  <StringListProperty Name="SystemPreprocessorUndefinitions" Visible="false" Category="Preprocessor" DisplayName="System Preprocessor Undefinitions (-U)" Switch="U" /> -->
   <StringProperty Name="ClangCompileFlags" DisplayName="Clang Required Compilation Flags" Description="Necessary compilation flags to generate appropriate clang output for MS linker." Visible="false" Category="Command Line" />
-  <StringProperty Name="EmscriptenCompileFlags" DisplayName="Emscripten Required Compilation Flags" Description="Necessary compilation flags to generate appropriate clang output for emcc linker." Visible="false" Category="Command Line" />
+<!--  <StringProperty Name="EmscriptenCompileFlags" DisplayName="Emscripten Required Compilation Flags" Description="Necessary compilation flags to generate appropriate clang output for emcc linker." Visible="false" Category="Command Line" /> -->
   <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />
     
 </Rule>

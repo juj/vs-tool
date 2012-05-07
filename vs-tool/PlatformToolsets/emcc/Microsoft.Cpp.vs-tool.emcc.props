@@ -2,7 +2,7 @@
   <PropertyGroup>    
     <PlatformToolsetVersion>emcc</PlatformToolsetVersion>
     <PlatformShortName>emcc</PlatformShortName>
-    <GccCompiler>clang.exe</GccCompiler>
+    <GccCompiler>emccstub.exe</GccCompiler>
     <GccLinker>emccstub.exe</GccLinker>
     <GccLibrarian>emccstub.exe</GccLibrarian> 
   </PropertyGroup>
