@@ -72,8 +72,9 @@
   </ItemDefinitionGroup>
 
   <ItemDefinitionGroup Condition="$(Configuration) != 'Debug'">
-    <ClCompile>      
-      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == ''">O4</OptimizationLevel>
+    <ClCompile>
+      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == '' and '$(PlatformToolset)' == 'clang'">O4</OptimizationLevel>
+      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == '' and '$(PlatformToolset)' != 'clang'">O2</OptimizationLevel>
       <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == ''">NoDebugInfo</GenerateDebugInformation>
       <CatchUndefinedBehavior        Condition="'%(ClCompile.CatchUndefinedBehavior)'         == ''">false</CatchUndefinedBehavior>
       <UseAddressSanitizer        Condition="'%(ClCompile.UseAddressSanitizer)'         == ''">false</UseAddressSanitizer>
