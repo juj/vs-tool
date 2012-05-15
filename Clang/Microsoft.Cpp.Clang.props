@@ -34,7 +34,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
-    <LibCompiled>true</LibCompiled>
+    <LinkCompiled>true</LinkCompiled>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
 
