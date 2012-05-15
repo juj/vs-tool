@@ -1,9 +1,0 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
-  <PropertyGroup>    
-    <PlatformToolsetVersion>emcc</PlatformToolsetVersion>
-    <PlatformShortName>emcc</PlatformShortName>
-    <GccCompiler>emccstub.exe</GccCompiler>
-    <GccLinker>emccstub.exe</GccLinker>
-    <GccLibrarian>emccstub.exe</GccLibrarian> 
-  </PropertyGroup>
-</Project>
