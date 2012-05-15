@@ -42,6 +42,7 @@
         AcceptableNonZeroExitCodes         ="%(ClCompile.AcceptableNonZeroExitCodes)"
 
         EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
+        GenerateDependencyFiles            ="false"
         GCCToolPath                        ="$(GccCompiler)"
         PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\NaCl\Props\mingw_compile.xml"
     >

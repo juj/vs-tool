@@ -4,13 +4,11 @@
 <!--
   <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
   <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
-  <UsingTask TaskName="ClangLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />-->
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" /> -->
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="ClangLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-tool.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
 
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
@@ -50,9 +48,11 @@
 
         GCCToolPath                        ="$(GccCompiler)"
         EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
+        GenerateDependencyFiles            ="false"
         PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\Emscripten\Props\clang_compile.xml"
     >
     </GCCCompile>
+    <!--GenerateDependencyFiles            ="true" -->
 
   </Target>
 
@@ -70,7 +70,7 @@
       </Lib>
     </ItemGroup>
 
-    <ClangLib
+    <GCCLib
         BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
         Sources                        ="@(Lib)"
 
@@ -88,11 +88,12 @@
         AcceptableNonZeroExitCodes     ="%(Lib.AcceptableNonZeroExitCodes)"
 
         EchoCommandLines               ="%(Lib.EchoCommandLines)"
+        UseClangSyntax                 ="true"
         GCCToolPath                    ="$(GccLibrarian)"
         PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\mingw_lib.xml"
       >
       <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
-    </ClangLib>
+    </GCCLib>
 
     <Message Condition="'$(LibSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
     

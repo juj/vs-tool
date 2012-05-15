@@ -137,6 +137,9 @@
 
   <StringProperty Name="MinGWCompileFlags" DisplayName="MinGW Compilation Flags" Description="Necessary compilation flags to invoke GCC to compile code from Visual Studio." Visible="false" Category="Command Line" />
 
+  <BoolProperty Name="GenerateDependencyFile" Switch="MD" Visible="true" Category="Advanced" />
+  <StringProperty Name="DependencyFileName" Switch="MF " Visible="true" Category="Advanced" />
+
   <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />
     
 </Rule>
