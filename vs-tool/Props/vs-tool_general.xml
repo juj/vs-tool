@@ -66,6 +66,7 @@
     <EnumValue Name="mingw" DisplayName="MinGW (GCC)" />
     <EnumValue Name="clang" DisplayName="Clang Compiler + MS Linker" />
     <EnumValue Name="emcc" DisplayName="Emscripten" />
+    <EnumValue Name="nacl" DisplayName="NaCl (GCC)" />
   </EnumProperty>
 
   <EnumProperty Name="ConfigurationType" DisplayName="Configuration Type"

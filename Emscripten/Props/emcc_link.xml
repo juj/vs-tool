@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="Link" PageTemplate="tool" DisplayName="Emcc Linker" SwitchPrefix="-" Order="20" xmlns="http://schemas.microsoft.com/build/2009/properties" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Rule.Categories>
+    <Category Name="General" DisplayName="General" />
+    <Category Name="Input" DisplayName="Input" />
+    <Category Name="Advanced" DisplayName="Advanced" />
+    <Category Name="Command Line" DisplayName="Command Line" Subtype="CommandLine" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" ItemType="Link" Label="" HasConfigurationCondition="true" />
+  </Rule.DataSource>
+  
+  <StringProperty Subtype="file" Name="OutputFile" DisplayName="Output File" Category="General" Switch="o" Separator=" " />
+  <StringListProperty Subtype="folder" Name="AdditionalLibraryDirectories" DisplayName="Additional Library Directories (-L)" Category="General" Switch="L" />
+
+  <BoolProperty Name="LinkLibraryDependencies" DisplayName="Link Library Dependencies" Description="Specifies whether or not library outputs from project dependencies are automatically linked in." Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.LinkLibraryDependencies">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+  <BoolProperty Name="UseLibraryDependencyInputs" DisplayName="Use Library Dependency Inputs" Description="Specifies whether or not the inputs to the librarian tool are used rather than the library file itself when linking in library outputs of project dependencies." Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.UseLibraryDependencyInputs">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+  <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Description="If true, the commands emcc is invoked with are printed to stdout during linking." Category="General" />
+
+  <EnumProperty Name="LinkerOptimizationLevel" DisplayName="Optimization" Category="General">
+    <EnumValue Name="OptimizationNotSet" DisplayName="Not set (default to -O0)" />
+    <EnumValue Name="O0" DisplayName="Disable Optimizations" Description="No optimizations (default)" Switch="O0" />
+    <EnumValue Name="O1" DisplayName="Simple Optimizations" Switch="O1" />
+    <EnumValue Name="O2" DisplayName="Relooper + Closure Compiler" Switch="O2" />
+    <EnumValue Name="O3" DisplayName="Unsafe Optimizations" Switch="O3" />
+  </EnumProperty>
+
+  <EnumProperty Name="TypedArrays" DisplayName="Typed Arrays" Description="Specifies the compilation mode for typed arrays. See https://github.com/kripken/emscripten/wiki/Code-Generation-Modes." Category="General">
+    <EnumValue Name="NotSet" DisplayName="Not set (default to Shared typed arrays)" />
+    <EnumValue Name="NoTypedArrays" DisplayName="No Typed Arrays" Switch="-typed-arrays=0" />
+    <EnumValue Name="ParallelTypedArrays" DisplayName="Parallel Typed Arrays" Switch="-typed-arrays=1" />
+    <EnumValue Name="SharedTypedArrays" DisplayName="Shared (C-like) Typed Arrays" Switch="-typed-arrays=2" />
+  </EnumProperty>
+
+  <BoolProperty Name="RunClosureCompiler" DisplayName="Run Closure Compiler (--closure)" Description="If true, the Closure Compiler is run as part of the build." Category="General" Switch="-closure 1" />
+  <BoolProperty Name="RunMinify" DisplayName="Minify JavaScript Code (--minify)" Description="If true, a minification process will be executed for the generated JavaScript code." Category="General" Switch="-minify 1" />
+  <BoolProperty Name="IgnoreDynamicLinking" DisplayName="Ignore Dynamic Linking" Description="Normally emcc will treat dynamic linking like static linking, by linking in the code from the dynamic library. This fails if the same dynamic library is linked more than once. With this option, dynamic linking is ignored, which allows the build system to proceed without errors. However, you will need to manually link to the shared libraries later on yourself.Disregards dynamic library linkingminification process will be executed for the generated JavaScript code." Category="General" Switch="-ignore-dynamic-linking" />
+
+  <StringListProperty Subtype="file" Name="PreJsFile" DisplayName="Pre-Add JavaScript File (--pre-js)" Description="Specifies a .js file to embed to the beginning of the generated script file, before running optimizations on the file." Category="Input" Switch="-pre-js" />
+  <StringListProperty Subtype="file" Name="PostJsFile" DisplayName="Post-Add JavaScript File (--post-js)" Description="Specifies a .js file to embed to the beginning of the generated script file, after optimizations have been performed." Category="Input" Switch="-post-js" />
+  <StringListProperty Subtype="file" Name="EmbedFile" DisplayName="Embedded Resource Files (--embed-file)" Description="Specifies a list of resource files to embed inside the generated JavaScript file." Category="Input" Switch="-embed-file" />
+  <StringListProperty Subtype="file" Name="PreloadFile" DisplayName="Preloaded Resource Files (--embed-file)" Description="Specifies a list of resource files to preload for the HTML page before running the compiled JavaScript code." Category="Input" Switch="-preload-file" />
+
+  <StringListProperty Subtype="file" Name="HtmlShellFile" DisplayName="HTML Shell File (--shell-file)" Description="Specifies the .html file template inside which the generated JavaScript code will be generated to." Category="Input" Switch="-shell-file" />
+  <StringListProperty Subtype="file" Name="JsLibrary" DisplayName="Additional JavaScript Libraries (--js-library)" Description="Specifies additional JavaScript libraries to link the generated code with." Category="Input" Switch="-js-library" />
+
+  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" />
+  <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />  
+</Rule>

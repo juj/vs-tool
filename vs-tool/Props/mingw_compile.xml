@@ -67,10 +67,10 @@
   <BoolProperty Name="NoAccessControl" DisplayName="No Access Control" Description="If set, C++ class visibility restrictions (protected/private) are ignored, and all members are treated as public." Category="Language" Switch="fno-access-control" />
 
   <BoolProperty Name="EnableMicrosoftExtensions" DisplayName="Enable Microsoft Extensions (-fms-extensions)" Description="Enable support for extensions from Microsoft Visual C++." Category="Language" Switch="fms-extensions" />
-
+<!-- TODO: ENABLE THIS FOR MINGW, BUT DISABLE FOR NACL.
   <IntProperty Name="ConstExprLimit" DisplayName="Recursive constexpr Invocation Limit" Description="Sets the limit for recursive constexpr function invocations to N. If this field is left empty, the default value of 512 is used." Category="Language" Switch="fconstexpr-depth=" />
   <IntProperty Name="TemplateRecursionLimit" DisplayName="Recursive Template Instantiation Limit" Description="Sets the limit for recursively nested template instantiations to N. If this field is left empty, the default value of 1024 is used." Category="Language" Switch="ftemplate-depth=" />
-
+-->
   <BoolProperty Name="WarnSystemHeaders" DisplayName="System Header Warnings (-Wsystem-headers)" Description="If false, compiler warnings occurring in system (platform) headers are not shown. If true, compiler warnings in system headers are reported. System headers are the paths which are included with the -isystem command line option." Category="General" Switch="Wsystem-headers" />
 
   <IntProperty Name="TemplateBacktraceLimit" DisplayName="Template Backtrace Limit" Description="Set the maximum number of template instantiation notes for a single warning or error to n. The default value is 10." Category="General" Switch="ftemplate-backtrace-limit" />

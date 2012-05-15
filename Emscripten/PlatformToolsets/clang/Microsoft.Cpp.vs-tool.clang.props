@@ -1,0 +1,9 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+  <PropertyGroup>    
+    <PlatformToolsetVersion>clang</PlatformToolsetVersion>
+    <PlatformShortName>clang</PlatformShortName>
+    <GccCompiler>clang.exe</GccCompiler>
+    <GccLinker>$(MSLinkExe)</GccLinker>
+    <GccLibrarian>$(MSLinkExe)</GccLibrarian>
+  </PropertyGroup>
+</Project>

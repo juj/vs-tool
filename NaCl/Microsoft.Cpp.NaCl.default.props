@@ -1,0 +1,15 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PlatformShortName>NaCl</PlatformShortName>
+    <PlatformArchitecture>32</PlatformArchitecture>
+    <PlatformToolset    Condition="'$(PlatformToolset)' == ''">nacl</PlatformToolset>
+
+    <NaclTargetApi Condition="'$(NaclTargetApi)' == ''">pepper_18</NaclTargetApi>
+    <NaclTargetLibrarySet Condition="'$(NaclTargetLibrarySet)' == ''">win_x86_newlib</NaclTargetLibrarySet>
+
+    <IntDir Condition="'$(IntDir)'=='' AND '$(IntermediateOutputPath)'!=''">$(IntermediateOutputPath)</IntDir>
+    <IntDir Condition="'$(IntDir)'=='' AND '$(IntermediateOutputPath)'==''">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(OutDir)'=='' AND '$(SolutionDir)' != ''">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(OutDir)'=='' AND '$(SolutionDir)' == ''">$(IntDir)</OutDir>
+  </PropertyGroup>	
+</Project>

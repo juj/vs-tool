@@ -1,0 +1,47 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(VCTargetsPath)\Platforms\NaCl\ImportBefore\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\NaCl\ImportBefore')" />
+  <Import Project="$(VCTargetsPath)\Platforms\NaCl\NaCl.EnvVars.props" />
+  <Import Condition="(exists('$(VCTargetsPath)\Platforms\NaCl\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.NaCl.$(PlatformToolset).props'))" Project="$(VCTargetsPath)\Platforms\NaCl\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.NaCl.$(PlatformToolset).props"/>
+  <PropertyGroup>
+    <DebuggerFlavor Condition="'$(DebuggerFlavor)'==''">WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Platforms\NaCl\NaCl.ToolPaths.props" />
+  <PropertyGroup>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <GenerateManifest>false</GenerateManifest>  
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.o</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.a</TargetExt>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'emcc'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.js</TargetExt>
+    <LocalDebuggerCommand>$(NODEJS_EXE)</LocalDebuggerCommand>
+    <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
+    <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'nacl'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.nexe</TargetExt>
+    <LocalDebuggerCommand>$(EMCC_WEBBROWSER_EXE)</LocalDebuggerCommand>
+    <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Platforms\NaCl\NaCl.ToolDefaults.props" />
+  <Import Project="$(VCTargetsPath)\Platforms\NaCl\ImportAfter\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\NaCl\ImportAfter')" />
+</Project>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="ConfigurationDirectories" DisplayName="Toolchain Directories" Order="8" PageTemplate="generic" Description="Tool search directories" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.Categories>
+    <Category Name="VC++" DisplayName="General" Description="Visual C++ Directories" />
+    <Category Name="ToolDirs" DisplayName="Toolchain Paths" Description="Toolchain Paths" />
+   </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" />
+  </Rule.DataSource>
+
+  <StringListProperty Name="IncludePath" DisplayName="Include Directories"
+                      Description="Path to use when searching for include files while building a VC++ project.  Corresponds to environment variable INCLUDE."
+                      F1Keyword="VC.Project.VCDirectories.IncludePath"
+                      Category="VC++" Separator=";" Subtype="folder" />
+  <StringListProperty Name="LibraryPath" DisplayName="Library Directories"
+                      Description="Path to use when searching for library files while building a VC++ project.  Corresponds to environment variable LIB."
+                      F1Keyword="VC.Project.VCDirectories.LibraryPath"
+                      Category="VC++" Separator=";" Subtype="folder" />
+
+  <StringProperty Name="NaclPath" Category="ToolDirs" DisplayName="NaCl SDK Root Directory" Description="Specify the directory where the NaCl toolchain executables reside in. See https://developers.google.com/native-client/. By default the environment variable NACL_SDK_ROOT is read." />
+</Rule>

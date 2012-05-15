@@ -27,7 +27,7 @@
       </ClCompile>
     </ItemGroup>
 
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and '$(PlatformToolset)' == 'mingw'"
+    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl')"
         BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
         Sources                            ="@(ClCompile)"
 
@@ -48,7 +48,7 @@
     >
     </GCCCompile>
 
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and '$(PlatformToolset)' != 'mingw'"
+    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'emcc')"
         BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
         Sources                            ="@(ClCompile)"
 
@@ -180,7 +180,7 @@
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </GCCLink>
 
-    <GCCLink Condition="'$(PlatformToolset)' == 'mingw'"
+    <GCCLink Condition="'$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl'"
         BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
         Sources                        ="@(Link)"
 

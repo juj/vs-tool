@@ -57,9 +57,9 @@
   <ItemDefinitionGroup Condition="$(Configuration) == 'Debug'">
     <ClCompile>      
       <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == ''">O0</OptimizationLevel>
-      <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == '' and '$(PlatformToolset)' == 'mingw'">FullDebugInfo</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == '' and ('$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl')">FullDebugInfo</GenerateDebugInformation>
       <!-- TODO: Enable debug information for clang and emcc when it does not crash clang! -->
-      <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == '' and '$(PlatformToolset)' != 'mingw'">NoDebugInfo</GenerateDebugInformation>
+      <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == '' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' != 'emcc')">NoDebugInfo</GenerateDebugInformation>
       <CatchUndefinedBehavior        Condition="'%(ClCompile.CatchUndefinedBehavior)'         == ''">true</CatchUndefinedBehavior>
       <UseAddressSanitizer        Condition="'%(ClCompile.UseAddressSanitizer)'         == ''">true</UseAddressSanitizer>
       <InstructionSet        Condition="'%(ClCompile.InstructionSet)'         == ''">NotSet</InstructionSet>

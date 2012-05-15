@@ -46,9 +46,14 @@
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' != 'emcc'">
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'mingw')">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'nacl'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.nexe</TargetExt>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">

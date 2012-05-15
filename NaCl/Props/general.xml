@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="ConfigurationGeneral" DisplayName="General" PageTemplate="generic" Description="General" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.Categories>
+    <Category Name="General" DisplayName="General" Description="General" />
+    <Category Name="ProjectDefaults" DisplayName="Project Defaults" Description="Project Defaults" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" Label="Configuration" />
+  </Rule.DataSource>
+
+  <StringProperty Name="OutDir" DisplayName="Output Directory"
+                  Description="Specifies a relative path to the output file directory; can include environment variables."
+                  Category="General" Default="$(SolutionDir)$(Configuration)\"
+                  Subtype="folder"
+                  F1Keyword="VC.Project.VCConfiguration.OutputDirectory">
+                  <StringProperty.DataSource>
+                     <DataSource Persistence="ProjectFile" Label="" />
+                  </StringProperty.DataSource>
+  </StringProperty>
+  <StringProperty Name="IntDir" DisplayName="Intermediate Directory"
+                  Description="Specifies a relative path to the intermediate file directory; can include environment variables."
+                  Category="General" Default="$(Configuration)\"
+                  Subtype="folder"
+                  F1Keyword="VC.Project.VCConfiguration.IntermediateDirectory">
+                  <StringProperty.DataSource>
+                     <DataSource Persistence="ProjectFile" Label="" />
+                  </StringProperty.DataSource>
+  </StringProperty>
+  <StringProperty Name="TargetName" DisplayName="Target Name"
+                  Description="Specifies a file name that this project will generate."
+                  F1Keyword="VC.Project.VCConfiguration.TargetName"
+                  Category="General" Default="$(ProjectName)"
+                  >
+                  <StringProperty.DataSource>
+                     <DataSource Persistence="ProjectFile" Label="" />
+                  </StringProperty.DataSource>
+  </StringProperty>
+  <StringProperty Name="TargetExt" DisplayName="Target Extension"
+                  Description="Specifies a file extension that this project will generate. (Example: .o, .bc, .js or .html)"
+                  F1Keyword="VC.Project.VCConfiguration.TargetExt"
+                  Category="General"
+                  >
+                  <StringProperty.DataSource>
+                     <DataSource Persistence="ProjectFile" Label="" />
+                  </StringProperty.DataSource>
+  </StringProperty>
+  <StringListProperty Name="ExtensionsToDeleteOnClean" DisplayName="Extensions to Delete on Clean"
+                      Description="Semi-colon delimited wildcard specification for which files in the intermediate directory to delete on clean or rebuild."
+                      Category="General" Separator=";"
+                      F1Keyword="VC.Project.VCConfiguration.DeleteExtensionsOnClean">
+                      <StringListProperty.DataSource>
+                            <DataSource Persistence="ProjectFile" Label="" />
+                      </StringListProperty.DataSource>
+  </StringListProperty>
+  <StringProperty Name="BuildLogFile" DisplayName="Build Log File"
+                  Description="Specifies the build log file to write to when build logging is enabled."
+                  F1Keyword="VC.Project.VCConfiguration.BuildLogFile"
+                  Category="General" Default="$(ProjectDir)\$(MSBuildProjectName).log"
+                  Subtype="file">
+                  <StringProperty.DataSource>
+                     <DataSource Persistence="ProjectFile" ItemType="BuildLog" PersistedName="Path" />
+                  </StringProperty.DataSource>
+  </StringProperty>
+
+  <EnumProperty Name="PlatformToolset" DisplayName="Platform Toolset" Category="General">
+    <EnumValue Name="nacl" DisplayName="NaCl (GCC)" />
+  </EnumProperty>
+
+  <EnumProperty Name="ConfigurationType" DisplayName="Configuration Type"
+                Description="Specifies the type of output this configuration generates."
+                Category="ProjectDefaults"
+                F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
+    <EnumValue Name="Application" DisplayName="Application (.nexe)" />
+    <EnumValue Name="StaticLibrary" DisplayName="Static Library (.o)" />
+    <EnumValue Name="StaticLibraryA" DisplayName="Static Library (libxxx.a)" />
+    <EnumValue Name="StaticLibraryLib" DisplayName="Static Library (.lib)" />
+  </EnumProperty>
+
+  <EnumProperty Name="NaclTargetApi" DisplayName="Target Pepper API Version"
+                Description="Specify which version of the Pepper API to build against.">
+    <EnumValue Name="pepper_18" DisplayName="pepper-18" />
+    <EnumValue Name="pepper_19" DisplayName="pepper-19" />
+  </EnumProperty>
+
+  <EnumProperty Name="NaclTargetLibrarySet" DisplayName="Target Toolchain Libraries"
+                Description="Specify which version of the toolchain libraries to build against.">
+    <EnumValue Name="win_x86_glibc" DisplayName="win_x86_glibc" />
+    <EnumValue Name="win_x86_newlib" DisplayName="win_x86_newlib" />
+  </EnumProperty>
+  
+  <EnumProperty Name="CLRSupport" DisplayName="Common Language Runtime Support"
+                Description="Specifies whether this configuration supports the Common Language Runtime. This is incompatible with some other settings, e.g. runtime checks. See help for /clr family of C++ compiler switches for full list of conflicts."
+                Category="ProjectDefaults"
+                F1Keyword="VC.Project.VCConfiguration.ManagedExtensions"
+                Visible="false">
+    <EnumValue Name="false" DisplayName="No Common Language Runtime Support"
+               Description="No Common Language Runtime Support" />
+    <EnumValue Name="true" DisplayName="Common Language Runtime Support (/clr)"
+               Description="Common Language Runtime Support (/clr)"/>
+    <EnumValue Name="Pure" DisplayName="Pure MSIL Common Language Runtime Support (/clr:pure)"
+               Description="Pure MSIL Common Language Runtime Support (/clr:pure)" />
+    <EnumValue Name="Safe" DisplayName="Safe MSIL Common Language Runtime Support (/clr:safe)"
+               Description="Safe MSIL Common Language Runtime Support (/clr:safe)" />
+    <EnumValue Name="OldSyntax" DisplayName="Common Language Runtime Support, Old Syntax (/clr:oldSyntax)"
+               Description="Common Language Runtime Support, Old Syntax (/clr:oldSyntax)" />
+  </EnumProperty>
+  
+</Rule>

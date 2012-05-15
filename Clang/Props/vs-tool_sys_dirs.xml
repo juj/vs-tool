@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="ConfigurationDirectories" DisplayName="Toolchain Directories" Order="8" PageTemplate="generic" Description="Tool search directories" xmlns="http://schemas.microsoft.com/build/2009/properties">
+  <Rule.Categories>
+    <Category Name="VC++" DisplayName="General" Description="Visual C++ Directories" />
+    <Category Name="ToolDirs" DisplayName="Toolchain Paths" Description="Toolchain Paths" />
+   </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" />
+  </Rule.DataSource>
+
+  <StringListProperty Name="IncludePath" DisplayName="Include Directories"
+                      Description="Path to use when searching for include files while building a VC++ project.  Corresponds to environment variable INCLUDE."
+                      F1Keyword="VC.Project.VCDirectories.IncludePath"
+                      Category="VC++" Separator=";" Subtype="folder" />
+  <StringListProperty Name="LibraryPath" DisplayName="Library Directories"
+                      Description="Path to use when searching for library files while building a VC++ project.  Corresponds to environment variable LIB."
+                      F1Keyword="VC.Project.VCDirectories.LibraryPath"
+                      Category="VC++" Separator=";" Subtype="folder" />
+
+  <StringProperty Name="MinGWPath" Category="ToolDirs" DisplayName="MinGW Compiler Path" Description="Specify the directory where the MinGW toolchain executables reside in. See http://www.mingw.org/. By default the environment variable MINGW_BIN is read." />
+  <StringProperty Name="ClangPath" Category="ToolDirs" DisplayName="Clang Compiler Path" Description="Specify the directory where the Clang compiler and toolchain executables reside in. See http://clang.llvm.org/.  By default the environment variable CLANG_BIN is read." />
+  <StringProperty Name="EmccPath" Category="ToolDirs" DisplayName="Emcc Linker Path" Description="Specify the directory where the emcc linker resides in. See https://github.com/kripken/emscripten. By default the environment variable EMCC_BIN is read." />
+  <StringProperty Name="NaclPath" Category="ToolDirs" DisplayName="NaCl Compiler Path" Description="Specify the directory where the NaCl toolchain executables reside in. See https://developers.google.com/native-client/. By default the environment variable NACL_BIN is read." />
+  <StringProperty Name="MSLinkExe" Category="ToolDirs" DisplayName="Microsoft link.exe" Description="Specify the full filename of link.exe provided with Visual Studio." />
+</Rule>
