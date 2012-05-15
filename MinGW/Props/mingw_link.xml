@@ -25,7 +25,7 @@
       <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
     </BoolProperty.DataSource>
   </BoolProperty>
-  <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Description="If true, the commands emcc is invoked with are printed to stdout during linking." Category="General" />
+  <BoolProperty Name="EchoCommandLines" DisplayName="Echo Command Lines" Description="If true, the commands MinGW linker are invoked with are printed to stdout during linking." Category="General" />
 
   <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" Switch="l" />
   

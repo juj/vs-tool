@@ -1,0 +1,52 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(VCTargetsPath)\Platforms\MinGW\ImportBefore\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\MinGW\ImportBefore')" />
+  <Import Project="$(VCTargetsPath)\Platforms\MinGW\MinGW.EnvVars.props" />
+  <Import Condition="(exists('$(VCTargetsPath)\Platforms\MinGW\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.MinGW.$(PlatformToolset).props'))" Project="$(VCTargetsPath)\Platforms\MinGW\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.MinGW.$(PlatformToolset).props"/>
+  <PropertyGroup>
+    <DebuggerFlavor Condition="'$(DebuggerFlavor)'==''">WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Platforms\MinGW\MinGW.ToolPaths.props" />
+  <PropertyGroup>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <GenerateManifest>false</GenerateManifest>  
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.a</TargetExt>
+    <TargetName>lib$(ProjectName)</TargetName>
+    <OutputType>staticlibrary</OutputType>
+  </PropertyGroup>
+
+  <!-- TODO: Would like to d
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.o</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.a</TargetExt>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+-->
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.dll</TargetExt>
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.exe</TargetExt>
+    <OutputType>exe</OutputType>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Platforms\MinGW\MinGW.ToolDefaults.props" />
+  <Import Project="$(VCTargetsPath)\Platforms\MinGW\ImportAfter\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\MinGW\ImportAfter')" />
+</Project>
