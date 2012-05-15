@@ -2,9 +2,9 @@
   <Import Project="$(VCTargetsPath)\Platforms\MinGW\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\MinGW\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\MinGW\MinGW.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\MinGW\MinGW.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\MinGW\MinGW.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
   <PropertyGroup>
@@ -82,6 +82,7 @@
         AcceptableNonZeroExitCodes     ="%(Lib.AcceptableNonZeroExitCodes)"
 
         EchoCommandLines               ="%(Lib.EchoCommandLines)"
+        UseClangSyntax                 ="false"
         GCCToolPath                    ="$(GccLibrarian)"
         PropertyXmlFile                ="$(VCTargetsPath)\Platforms\MinGW\Props\mingw_lib.xml"
       >

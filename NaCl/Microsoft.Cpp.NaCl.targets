@@ -2,9 +2,9 @@
   <Import Project="$(VCTargetsPath)\Platforms\NaCl\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\NaCl\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\NaCl\NaCl.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\NaCl\NaCl.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\NaCl\NaCl.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
   <PropertyGroup>
@@ -26,7 +26,7 @@
       </ClCompile>
     </ItemGroup>
 
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl')"
+    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true'"
         BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
         Sources                            ="@(ClCompile)"
 
@@ -82,6 +82,7 @@
 
         EchoCommandLines               ="%(Lib.EchoCommandLines)"
         GCCToolPath                    ="$(GccLibrarian)"
+        UseClangSyntax                 ="false"
         PropertyXmlFile                ="$(VCTargetsPath)\Platforms\NaCl\Props\mingw_lib.xml"
       >
       	<Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />

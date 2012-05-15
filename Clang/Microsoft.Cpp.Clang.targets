@@ -2,9 +2,9 @@
   <Import Project="$(VCTargetsPath)\Platforms\Clang\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Clang\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
   <PropertyGroup>
@@ -42,7 +42,7 @@
         AcceptableNonZeroExitCodes         ="%(ClCompile.AcceptableNonZeroExitCodes)"
 
         GCCToolPath                        ="$(GccCompiler)"
-        GenerateDependencyFiles            ="false"
+        GenerateDependencyFile             ="false"
         EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
         PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\Clang\Props\clang_compile.xml"
     >
