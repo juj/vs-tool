@@ -33,28 +33,7 @@
       </ClCompile>
     </ItemGroup>
 
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl')"
-        BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
-        Sources                            ="@(ClCompile)"
-
-        TrackerLogDirectory                ="%(ClCompile.TrackerLogDirectory)"
-
-        TLogReadFiles                      ="@(CLTLogReadFiles)"
-        TLogWriteFiles                     ="@(CLTLogWriteFiles)"
-        ToolExe                            ="$(CLToolExe)"
-        ToolPath                           ="$(CLToolPath)"
-        TrackFileAccess                    ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking         ="%(ClCompile.MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes         ="%(ClCompile.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
-        GCCToolPath                        ="$(GccCompiler)"
-        PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\Emscripten\Props\mingw_compile.xml"
-    >
-    </GCCCompile>
-
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'emcc')"
+    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true'"
         BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
         Sources                            ="@(ClCompile)"
 
@@ -91,33 +70,9 @@
       </Lib>
     </ItemGroup>
 
-    <GCCLib Condition="'$(PlatformToolset)' != 'emcc'
-      " BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
-		    Sources                        ="@(Lib)"
-
-        OutputFile                     ="%(Lib.OutputFile)"
-
-        TrackerLogDirectory            ="%(Lib.TrackerLogDirectory)"
-
-        TLogReadFiles                  ="@(LIBTLogReadFiles)"
-        TLogWriteFiles                 ="@(LIBTLogWriteFiles)"
-        ToolExe                        ="$(LIBToolExe)"
-        ToolPath                       ="$(LIBToolPath)"
-        TrackFileAccess                ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking     ="%(Lib.MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes     ="%(Lib.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines               ="%(Lib.EchoCommandLines)"
-        GCCToolPath                    ="$(GccLibrarian)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\mingw_lib.xml"
-      >
-      	<Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
-    </GCCLib>
-
-    <ClangLib Condition="'$(PlatformToolset)' == 'emcc'
-      " BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
-		    Sources                        ="@(Lib)"
+    <ClangLib
+        BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
+        Sources                        ="@(Lib)"
 
         OutputFile                     ="%(Lib.OutputFile)"
 
@@ -162,7 +117,7 @@
     </ItemGroup>
 
 
-    <GCCLink Condition="'$(PlatformToolset)' == 'emcc'"
+    <GCCLink
         BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
         Sources                        ="@(Link)"
 
@@ -182,54 +137,6 @@
         EchoCommandLines               ="%(Link.EchoCommandLines)"        
         GCCToolPath                    ="$(GccLinker)"        
         PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\emcc_link.xml"
-    >
-      <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
-    </GCCLink>
-
-    <GCCLink Condition="'$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl'"
-        BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
-        Sources                        ="@(Link)"
-
-        OutputFile                     ="%(Link.OutputFile)"
-        
-        TrackerLogDirectory            ="%(Link.TrackerLogDirectory)"
-
-        TLogReadFiles                  ="@(LinkTLogReadFiles)"
-        TLogWriteFiles                 ="@(LinkTLogWriteFiles)"
-        ToolExe                        ="$(LinkToolExe)"
-        ToolPath                       ="$(LinkToolPath)"
-        TrackFileAccess                ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking     ="$(Link_MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes     ="%(Link.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines               ="%(Link.EchoCommandLines)"
-        GCCToolPath                    ="$(GccLinker)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\mingw_link.xml"
-    >
-      <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
-    </GCCLink>
-
-    <GCCLink Condition="'$(PlatformToolset)' == 'clang'"
-        BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
-        Sources                        ="@(Link)"
-
-        OutputFile                     ="%(Link.OutputFile)"
-        
-        TrackerLogDirectory            ="%(Link.TrackerLogDirectory)"
-
-        TLogReadFiles                  ="@(LinkTLogReadFiles)"
-        TLogWriteFiles                 ="@(LinkTLogWriteFiles)"
-        ToolExe                        ="$(LinkToolExe)"
-        ToolPath                       ="$(LinkToolPath)"
-        TrackFileAccess                ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking     ="$(Link_MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes     ="%(Link.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines               ="%(Link.EchoCommandLines)"
-        GCCToolPath                    ="$(MSLinkExe)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\link.xml"
     >
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </GCCLink>

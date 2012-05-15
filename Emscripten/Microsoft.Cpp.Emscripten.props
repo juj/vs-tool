@@ -10,7 +10,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <GenerateManifest>false</GenerateManifest>  
   </PropertyGroup>
-
+<!--
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.o</TargetExt>
@@ -21,13 +21,13 @@
     <TargetExt>.a</TargetExt>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-
+-->
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.bc</TargetExt>
     <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
   </PropertyGroup>
-
+<!--
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.lib</TargetExt>
@@ -37,7 +37,7 @@
     <LibCompiled>true</LibCompiled>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
-
+-->
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'emcc'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
@@ -45,7 +45,7 @@
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
-
+<!--
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'mingw')">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.exe</TargetExt>
@@ -55,7 +55,7 @@
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.nexe</TargetExt>
   </PropertyGroup>
-
+-->
   <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>

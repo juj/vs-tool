@@ -112,14 +112,15 @@
   <BoolProperty Name="UseThreadSanitizer" DisplayName="Turn on ThreadSanitizer" Description="Enables the use of ThreadSanitizer, an experimental data race detector. Not ready for widespread use. See http://code.google.com/p/data-race-test/wiki/CompileTimeInstrumentation" Category="Code Generation" Switch="fthread-sanitizer"  />
   <BoolProperty Name="NotSaneOperatorNew" DisplayName="Don't Assume Sane Operator new" Description="This option tells the compiler to do not assume that C++'s global new operator will always return a pointer that does not alias any other pointer when the function returns." Category="Code Generation" Switch="fno-assume-sane-operator-new"  />
 
-  <BoolProperty Name="GenerateLLVMByteCode" DisplayName="Generate LLVM Bytecode" Description="If set, the resulting object file contains LLVM bytecode. If not set, the generated object file will contain assembly for the target platform." Category="Code Generation" Switch="emit-llvm"  />
-
+<!--  <BoolProperty Name="GenerateLLVMByteCode" DisplayName="Generate LLVM Bytecode" Description="If set, the resulting object file contains LLVM bytecode. If not set, the generated object file will contain assembly for the target platform." Category="Code Generation" Switch="emit-llvm"  /> -->
+<!--
   <EnumProperty Name="TargetArchitecture" DisplayName="Target Architecture" Description="Specifies the target architecture to compile code for." Category="Code Generation">
     <EnumValue Name="NotSet" DisplayName="Not set" />
     <EnumValue Name="x86" DisplayName="x86" Switch="m32" />
     <EnumValue Name="x64" DisplayName="x64 or amd64" Switch="m64" />
   </EnumProperty>
-
+  -->
+<!--
   <EnumProperty Name="InstructionSet" DisplayName="Enable Enhanced Instruction Set" Description="Enable use of instructions found on processors that support enhanced instruction sets." Category="Code Generation">
     <EnumValue Name="NotSet" DisplayName="Not set" />
     <EnumValue Name="MMX" DisplayName="Multimedia Extensions (MMX)" Switch="mmmx" />
@@ -133,7 +134,7 @@
     <EnumValue Name="AVX" DisplayName="Advanced Vector Extensions (AVX)" Switch="mavx" />
     <EnumValue Name="AVX2" DisplayName="Advanced Vector Extensions 2 (AVX2)" Switch="mavx2" />
   </EnumProperty>
-
+-->
   <StringProperty Subtype="file" Name="ObjectFileName" DisplayName="Object File Name" Category="Output Files" Switch="o " />
   <BoolProperty Name="PreserveTempFiles" DisplayName="Preserve All Intermediate Files" Description="If set, the intermediate compilation results are stored to files. Look for files with suffixes .ii, .s and .o." Category="Output Files" Switch="save-temps" />
   <EnumProperty Name="VerboseOutput" DisplayName="Verbose Compilation" Description="Specify what kind of debug trace output to generate during compilation." Category="Output Files">

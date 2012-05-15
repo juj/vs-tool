@@ -1,9 +1,0 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <PlatformToolsetVersion>nacl</PlatformToolsetVersion>
-    <PlatformShortName>NaCl</PlatformShortName>
-    <GccCompiler>i686-nacl-g++.exe</GccCompiler>
-    <GccLinker>i686-nacl-g++.exe</GccLinker>
-    <GccLibrarian>i686-nacl-ar.exe</GccLibrarian>
-  </PropertyGroup>
-</Project>

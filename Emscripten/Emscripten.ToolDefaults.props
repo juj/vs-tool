@@ -31,23 +31,11 @@
       <SystemIncludeDirectories Condition="'%(ClCompile.SystemIncludeDirectories)'  == ''">$(IncludePath)</SystemIncludeDirectories>
       <SystemPreprocessorDefinitions Condition="'%(ClCompile.SystemPreprocessorDefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">EMSCRIPTEN;__STDC__</SystemPreprocessorDefinitions>
       <SystemPreprocessorUndefinitions Condition="'%(ClCompile.SystemPreprocessorUndefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">_WIN32;WIN32;__i386__;__x86_64__;__i386;__x86_64;__SSE__;__SSE2__;__MMX__;X87_DOUBLE_ROUNDING;HAVE_GCC_ASM_FOR_X87;__STRICT_ANSI__;__CYGWIN__;__APPLE__</SystemPreprocessorUndefinitions>
-      <EmscriptenCompileFlags Condition="'%(ClCompile.EmscriptenCompileFlags)' == '' and '$(PlatformToolset)' == 'emcc'">-c -m32 -Xclang -triple=i386-pc-linux-gnu -nostdinc -Xclang -nobuiltininc -Xclang -nostdinc++ -Xclang -nostdsysteminc -emit-llvm</EmscriptenCompileFlags>
-      <MinGWCompileFlags Condition="'%(ClCompile.MinGWCompileFlags)' == ''">-c</MinGWCompileFlags>
-      <ClangCompileFlags Condition="'%(ClCompile.ClangCompileFlags)' == '' and '$(PlatformToolset)' == 'clang'">-c</ClangCompileFlags>
+<!--      <EmscriptenCompileFlags Condition="'%(ClCompile.EmscriptenCompileFlags)' == '' and '$(PlatformToolset)' == 'emcc'">-c -m32 -Xclang -triple=i386-pc-linux-gnu -nostdinc -Xclang -nobuiltininc -Xclang -nostdinc++ -Xclang -nostdsysteminc -emit-llvm</EmscriptenCompileFlags> -->
       <TargetArchitecture        Condition="'%(ClCompile.TargetArchitecture)'         == ''">NotSet</TargetArchitecture>
     </ClCompile>
   </ItemDefinitionGroup>
 
-  <ItemDefinitionGroup Condition="'$(PlatformToolset)' == 'clang'">
-    <ClCompile>
-      <GenerateLLVMByteCode        Condition="'%(ClCompile.GenerateLLVMByteCode)'         == ''">false</GenerateLLVMByteCode>
-    </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories        Condition="'%(Link.AdditionalLibraryDirectories)'         == ''">$(FrameworkSdkDir)\Lib;$(VCInstallDir)\lib</AdditionalLibraryDirectories>
-      <DefaultRuntimeLibrary        Condition="'%(Link.DefaultRuntimeLibrary)'         == '' and $(Configuration) == 'Debug'">libcmtd</DefaultRuntimeLibrary>
-      <DefaultRuntimeLibrary        Condition="'%(Link.DefaultRuntimeLibrary)'         == '' and $(Configuration) != 'Debug'">libcmt</DefaultRuntimeLibrary>
-    </Link>
-    </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(PlatformToolset)' == 'emcc'">
     <ClCompile>
       <GenerateLLVMByteCode        Condition="'%(ClCompile.GenerateLLVMByteCode)'         == ''">true</GenerateLLVMByteCode>
@@ -73,13 +61,10 @@
 
   <ItemDefinitionGroup Condition="$(Configuration) != 'Debug'">
     <ClCompile>
-      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == '' and '$(PlatformToolset)' == 'clang'">O4</OptimizationLevel>
-      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == '' and '$(PlatformToolset)' != 'clang'">O2</OptimizationLevel>
+      <OptimizationLevel        Condition="'%(ClCompile.OptimizationLevel)'         == ''">O2</OptimizationLevel>
       <GenerateDebugInformation Condition="'%(ClCompile.GenerateDebugInformation)'  == ''">NoDebugInfo</GenerateDebugInformation>
       <CatchUndefinedBehavior        Condition="'%(ClCompile.CatchUndefinedBehavior)'         == ''">false</CatchUndefinedBehavior>
       <UseAddressSanitizer        Condition="'%(ClCompile.UseAddressSanitizer)'         == ''">false</UseAddressSanitizer>
-      <InstructionSet        Condition="'%(ClCompile.InstructionSet)'         == '' and '$(PlatformToolset)' != 'emcc'">SSE2</InstructionSet>
-      <InstructionSet        Condition="'%(ClCompile.InstructionSet)'         == '' and '$(PlatformToolset)' == 'emcc'">NotSet</InstructionSet>
     </ClCompile>
 
     <Link>
