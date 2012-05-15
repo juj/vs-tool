@@ -63,23 +63,19 @@
   </StringProperty>
 
   <EnumProperty Name="PlatformToolset" DisplayName="Platform Toolset" Category="General">
-    <EnumValue Name="mingw" DisplayName="MinGW (GCC)" />
     <EnumValue Name="clang" DisplayName="Clang Compiler + MS Linker" />
-    <EnumValue Name="emcc" DisplayName="Emscripten" />
-    <EnumValue Name="nacl" DisplayName="NaCl (GCC)" />
   </EnumProperty>
 
   <EnumProperty Name="ConfigurationType" DisplayName="Configuration Type"
                 Description="Specifies the type of output this configuration generates."
                 Category="ProjectDefaults"
                 F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
-    <EnumValue Name="Application" DisplayName="Application (MinGW and Clang: .exe, Emcc: .js)" />
+    <EnumValue Name="Application" DisplayName="Application (.exe)" />
     <EnumValue Name="StaticLibrary" DisplayName="Static Library (.o)" />
     <EnumValue Name="StaticLibraryA" DisplayName="Static Library (libxxx.a)" />
     <EnumValue Name="StaticLibraryLib" DisplayName="Static Library (.lib)" />
     <EnumValue Name="StaticLibraryBc" DisplayName="Static LLVM Bitcode Library (.bc)" />
     <EnumValue Name="DynamicLibrary" DisplayName="Dynamic Library (.dll)" />
-    <EnumValue Name="HTMLPage" DisplayName="HTML with Embedded JS (.html, Emcc only)" />
   </EnumProperty>
   
   <EnumProperty Name="CLRSupport" DisplayName="Common Language Runtime Support"

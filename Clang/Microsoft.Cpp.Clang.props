@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\ImportBefore\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\Clang\ImportBefore')" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\Clang.EnvVars.props" />
+  <Import Condition="(exists('$(VCTargetsPath)\Platforms\Clang\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Clang.$(PlatformToolset).props'))" Project="$(VCTargetsPath)\Platforms\Clang\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Clang.$(PlatformToolset).props"/>
+  <PropertyGroup>
+    <DebuggerFlavor Condition="'$(DebuggerFlavor)'==''">WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\Clang.ToolPaths.props" />
+  <PropertyGroup>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <GenerateManifest>false</GenerateManifest>  
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.o</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.a</TargetExt>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.bc</TargetExt>
+    <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
+    <LinkCompiled>true</LinkCompiled>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\Clang.ToolDefaults.props" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\ImportAfter\*.props" Condition="Exists('$(VCTargetsPath)\Platforms\Clang\ImportAfter')" />
+</Project>

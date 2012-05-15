@@ -1,11 +1,11 @@
 ﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\vs-tool\ImportBefore')" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Clang\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.Build.CPPTasks.dll" />
-  <UsingTask TaskName="ClangLib" AssemblyFile="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
+  <UsingTask TaskName="ClangLib" AssemblyFile="$(VCTargetsPath)\Platforms\Clang\Clang.Build.CPPTasks.dll" />
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
   <PropertyGroup>
@@ -27,28 +27,7 @@
       </ClCompile>
     </ItemGroup>
 
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl')"
-        BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
-        Sources                            ="@(ClCompile)"
-
-        TrackerLogDirectory                ="%(ClCompile.TrackerLogDirectory)"
-
-        TLogReadFiles                      ="@(CLTLogReadFiles)"
-        TLogWriteFiles                     ="@(CLTLogWriteFiles)"
-        ToolExe                            ="$(CLToolExe)"
-        ToolPath                           ="$(CLToolPath)"
-        TrackFileAccess                    ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking         ="%(ClCompile.MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes         ="%(ClCompile.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
-        GCCToolPath                        ="$(GccCompiler)"
-        PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_compile.xml"
-    >
-    </GCCCompile>
-
-    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'emcc')"
+    <GCCCompile Condition="'%(ClCompile.ExcludedFromBuild)'!='true'"
         BuildingInIDE                      ="$(BuildingInsideVisualStudio)"
         Sources                            ="@(ClCompile)"
 
@@ -65,7 +44,7 @@
 
         GCCToolPath                        ="$(GccCompiler)"
         EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
-        PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\vs-tool\Props\clang_compile.xml"
+        PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\Clang\Props\clang_compile.xml"
     >
     </GCCCompile>
 
@@ -104,7 +83,7 @@
 
         EchoCommandLines               ="%(Lib.EchoCommandLines)"
         GCCToolPath                    ="$(GccLibrarian)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_lib.xml"
+        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Clang\Props\mingw_lib.xml"
       >
       	<Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
     </GCCLib>
@@ -128,7 +107,7 @@
 
         EchoCommandLines               ="%(Lib.EchoCommandLines)"
         GCCToolPath                    ="$(GccLibrarian)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_lib.xml"
+        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Clang\Props\mingw_lib.xml"
       >
       <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
     </ClangLib>
@@ -175,31 +154,7 @@
 
         EchoCommandLines               ="%(Link.EchoCommandLines)"        
         GCCToolPath                    ="$(GccLinker)"        
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\emcc_link.xml"
-    >
-      <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
-    </GCCLink>
-
-    <GCCLink Condition="'$(PlatformToolset)' == 'mingw' or '$(PlatformToolset)' == 'nacl'"
-        BuildingInIDE                  ="$(BuildingInsideVisualStudio)"
-        Sources                        ="@(Link)"
-
-        OutputFile                     ="%(Link.OutputFile)"
-        
-        TrackerLogDirectory            ="%(Link.TrackerLogDirectory)"
-
-        TLogReadFiles                  ="@(LinkTLogReadFiles)"
-        TLogWriteFiles                 ="@(LinkTLogWriteFiles)"
-        ToolExe                        ="$(LinkToolExe)"
-        ToolPath                       ="$(LinkToolPath)"
-        TrackFileAccess                ="$(TrackFileAccess)"
-        MinimalRebuildFromTracking     ="$(Link_MinimalRebuildFromTracking)"
-
-        AcceptableNonZeroExitCodes     ="%(Link.AcceptableNonZeroExitCodes)"
-
-        EchoCommandLines               ="%(Link.EchoCommandLines)"
-        GCCToolPath                    ="$(GccLinker)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\mingw_link.xml"
+        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Clang\Props\emcc_link.xml"
     >
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </GCCLink>
@@ -223,7 +178,7 @@
 
         EchoCommandLines               ="%(Link.EchoCommandLines)"
         GCCToolPath                    ="$(MSLinkExe)"
-        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\vs-tool\Props\link.xml"
+        PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Clang\Props\link.xml"
     >
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </GCCLink>
@@ -233,7 +188,7 @@
   </Target>
 
   <!-- Override the Microsoft.CppBuild.targets stuff -->
-  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\vs-tool.CppBuild.targets" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\Clang.CppBuild.targets" />
   
 	
 	
@@ -244,8 +199,8 @@
   <Target Name="PlatformPrepareForBuild" DependsOnTargets="$(PlatformPrepareForBuildDependsOn)">
   </Target>
 	
-  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.vs-tool.$(PlatformToolset).targets" Condition="(exists('$(VCTargetsPath)\Platforms\vs-tool\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.vs-tool.$(PlatformToolset).targets'))" />
-  <Import Project="$(VCTargetsPath)\Platforms\vs-tool\ImportAfter\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\vs-tool\ImportAfter')" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Clang.$(PlatformToolset).targets" Condition="(exists('$(VCTargetsPath)\Platforms\Clang\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Clang.$(PlatformToolset).targets'))" />
+  <Import Project="$(VCTargetsPath)\Platforms\Clang\ImportAfter\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Clang\ImportAfter')" />
 </Project>
 
 
