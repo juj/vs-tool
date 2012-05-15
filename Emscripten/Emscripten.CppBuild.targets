@@ -61,9 +61,11 @@
     <ProjectTools Include="Link"/>
     <ProjectTools Include="CustomBuildStep"/>
   </ItemGroup>
-  
-  <!-- Tools that show up in the IDE property pages for lib project-->
-  <ItemGroup Condition="('$(ConfigurationType)' == 'StaticLibrary' or '$(ConfigurationType)' == 'StaticLibraryBc' or '$(ConfigurationType)' == 'StaticLibraryA' or '$(ConfigurationType)' == 'StaticLibraryLib')">
+
+<!--  <ItemGroup Condition="('$(ConfigurationType)' == 'StaticLibrary' or '$(ConfigurationType)' == 'StaticLibraryBc' or '$(ConfigurationType)' == 'StaticLibraryA' or '$(ConfigurationType)' == 'StaticLibraryLib')"> -->
+
+    <!-- Tools that show up in the IDE property pages for lib project-->
+  <ItemGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
     <ProjectTools Include="Lib"/>
     <ProjectTools Include="CustomBuildStep"/>
   </ItemGroup>

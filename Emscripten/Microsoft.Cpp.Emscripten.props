@@ -21,8 +21,15 @@
     <TargetExt>.a</TargetExt>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
--->
+  
   <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
+    <LibCompiled>true</LibCompiled>
+    <TargetExt>.bc</TargetExt>
+    <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
+  </PropertyGroup>
+  
+-->
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.bc</TargetExt>
     <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
@@ -38,7 +45,7 @@
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
 -->
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'emcc'">
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
     <LocalDebuggerCommand>$(EMCC_BIN)\nodepause.bat</LocalDebuggerCommand>
