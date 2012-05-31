@@ -42,7 +42,7 @@
         AcceptableNonZeroExitCodes         ="%(ClCompile.AcceptableNonZeroExitCodes)"
 
         GCCToolPath                        ="$(GccCompiler)"
-        GenerateDependencyFile             ="false"
+        GenerateDependencyFiles            ="false"
         EchoCommandLines                   ="%(ClCompile.EchoCommandLines)"
         PropertyXmlFile                    ="$(VCTargetsPath)\Platforms\Clang\Props\clang_compile.xml"
     >
