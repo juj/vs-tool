@@ -2,8 +2,8 @@
   <PropertyGroup>    
     <PlatformToolsetVersion>emcc</PlatformToolsetVersion>
     <PlatformShortName>emcc</PlatformShortName>
-    <GccCompiler>emccstub.exe</GccCompiler>
-    <GccLinker>emccstub.exe</GccLinker>
-    <GccLibrarian>emccstub.exe</GccLibrarian> 
+    <GccCompiler>pythonemcc.exe</GccCompiler>
+    <GccLinker>pythonemcc.exe</GccLinker>
+    <GccLibrarian>pythonemcc.exe</GccLibrarian> 
   </PropertyGroup>
 </Project>
