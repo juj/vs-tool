@@ -50,7 +50,7 @@ namespace pythonemcc
             string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var directory = System.IO.Path.GetDirectoryName(path);
 
-            string a = directory + "\\emcc";
+            string a = directory + "\\" + System.IO.Path.GetFileNameWithoutExtension(path);
             foreach(string s in emccargs)
                 a += " " + s;
 
