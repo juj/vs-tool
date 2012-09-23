@@ -50,7 +50,8 @@ namespace pythonemcc
             string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var directory = System.IO.Path.GetDirectoryName(path);
 
-            string a = directory + "\\" + System.IO.Path.GetFileNameWithoutExtension(path);
+            var toolname = System.IO.Path.GetFileNameWithoutExtension(path);
+            string a = directory + "\\" + toolname;
             foreach(string s in emccargs)
                 a += " " + s;
 
@@ -63,14 +64,12 @@ namespace pythonemcc
             p.BeginOutputReadLine();
             p.BeginErrorReadLine();
 
-            int maxTimeToWait = 2400;
-            while (!p.HasExited && maxTimeToWait-- > 0)
-                p.WaitForExit(50);
-
-            // If we spinwait needlessly, just quit and ignore the process.
-            // Increase this limit manually if you know the process is doing something. (Guessing that two minutes should be enough for any task)
-            if (maxTimeToWait <= 0)
-                Console.WriteLine("Warning: A call to python emcc seems to have hung! (no response in 120 seconds!) Abandoning it..");
+            while (!p.HasExited)
+            {
+                p.WaitForExit(10000);
+                if (!p.HasExited)
+                    Console.WriteLine(toolname + " running.. please wait.");
+            }
         }
 
         static void p_OutputDataReceived(object sender, DataReceivedEventArgs line)
