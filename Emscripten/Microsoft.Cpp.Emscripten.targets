@@ -6,9 +6,9 @@
   <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
   <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" /> -->
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
-  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
-  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs_android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs_android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs_android.Build.CPPTasks.Android.dll" />
 
   <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
