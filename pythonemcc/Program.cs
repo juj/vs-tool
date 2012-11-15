@@ -24,11 +24,8 @@ namespace pythonemcc
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            if (args.Length == 0)
-                return;
-
             List<string> emccargs = new List<string>();
-            string firstparam = args[0];
+            string firstparam = args.Length > 0 ? args[0] : "";
             if (firstparam.StartsWith("@")) // Is this a reference to a .rsp file?
             {
                 firstparam = firstparam.Substring(1);
@@ -39,11 +36,13 @@ namespace pythonemcc
             }
             else // No .rsp file, pass the arguments directly
                 emccargs.AddRange(args);
-//          Console.WriteLine("Invoking emcc with cmdline: " + s);
+//            Console.WriteLine("Invoking emcc with cmdline: " + emccargs);
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.CreateNoWindow = true;
             psi.UseShellExecute = false;
-            psi.FileName = "python";
+            if (!File.Exists("c:\\python27\\python.exe")) // TODO: Remove this hardcoded check!
+                Console.WriteLine("Error: c:\\python27\\python.exe does not exist! Recompile vs-tool with a proper path to python!");
+            psi.FileName = "c:\\python27\\python.exe"; // On Win7, it seems just having here "python" works, but not on Vista.
             // We assume that the 'emcc' python executable and this application reside in the
             // same directory.
             // http://stackoverflow.com/questions/837488/how-can-i-get-the-applications-path-in-net-in-a-console-app
@@ -58,24 +57,37 @@ namespace pythonemcc
             psi.Arguments = a;
             psi.RedirectStandardError = true;
             psi.RedirectStandardOutput = true;
-            Process p = Process.Start(psi);
-            p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
-            p.ErrorDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
-            p.BeginOutputReadLine();
-            p.BeginErrorReadLine();
-
-            while (!p.HasExited)
+            try
             {
-                p.WaitForExit(10000);
-                if (!p.HasExited)
-                    Console.WriteLine(toolname + " running.. please wait.");
+                Process p = Process.Start(psi);
+                p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
+                p.ErrorDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
+                p.BeginOutputReadLine();
+                p.BeginErrorReadLine();
+
+                while (!p.HasExited)
+                {
+                    p.WaitForExit(10000);
+                    if (!p.HasExited)
+                        Console.WriteLine(toolname + " running.. please wait.");
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception received when starting tool '" + psi.FileName + "' with command line '" + psi.Arguments + "'!\n" + e.ToString());
+            }
+
+            if (lastLine == null || lastLine.Trim().Length != 0)
+                Console.WriteLine("");
         }
+
+        // Try to simulate the proper last newline output so we don't spam empty lines.
+        static string lastLine = null;
 
         static void p_OutputDataReceived(object sender, DataReceivedEventArgs line)
         {
-            if (!String.IsNullOrEmpty(line.Data))
-                Console.WriteLine(line.Data.Trim());
+            Console.Write(line.Data);
+            lastLine = line.Data;
         }
     }
 }
