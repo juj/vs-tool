@@ -22,7 +22,7 @@ namespace pythonemcc
         /// I'll be happy to hear it.
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             List<string> emccargs = new List<string>();
             string firstparam = args.Length > 0 ? args[0] : "";
@@ -57,6 +57,7 @@ namespace pythonemcc
             psi.Arguments = a;
             psi.RedirectStandardError = true;
             psi.RedirectStandardOutput = true;
+            int processReturnCode = 1;
             try
             {
                 Process p = Process.Start(psi);
@@ -71,14 +72,17 @@ namespace pythonemcc
                     if (!p.HasExited)
                         Console.WriteLine(toolname + " running.. please wait.");
                 }
+                processReturnCode = p.ExitCode;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception received when starting tool '" + psi.FileName + "' with command line '" + psi.Arguments + "'!\n" + e.ToString());
+                return 1;
             }
 
             if (lastLine == null || lastLine.Trim().Length != 0)
                 Console.WriteLine("");
+            return processReturnCode;
         }
 
         // Try to simulate the proper last newline output so we don't spam empty lines.
