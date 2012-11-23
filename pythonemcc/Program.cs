@@ -80,18 +80,18 @@ namespace pythonemcc
                 return 1;
             }
 
-            if (lastLine == null || lastLine.Trim().Length != 0)
-                Console.WriteLine("");
             return processReturnCode;
         }
 
-        // Try to simulate the proper last newline output so we don't spam empty lines.
-        static string lastLine = null;
-
         static void p_OutputDataReceived(object sender, DataReceivedEventArgs line)
         {
-            Console.Write(line.Data);
-            lastLine = line.Data;
+            if (line.Data != null)
+            {
+                if (line.Data.EndsWith("\n"))
+                    Console.Write(line.Data);
+                else
+                    Console.WriteLine(line.Data);
+            }
         }
     }
 }
