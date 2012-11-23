@@ -57,6 +57,12 @@ namespace pythonemcc
             psi.Arguments = a;
             psi.RedirectStandardError = true;
             psi.RedirectStandardOutput = true;
+            
+            // We don't do anything with the StandardInput redirect, but it exists to workaround Python bugs. See:
+            // http://bugs.python.org/issue3905
+            // and https://github.com/kripken/emscripten/issues/718
+            psi.RedirectStandardInput = true;
+
             int processReturnCode = 1;
             try
             {
