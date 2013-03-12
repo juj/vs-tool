@@ -21,6 +21,7 @@ namespace pythonemcc
         /// Ideally, this tool should never exist. If someone can find an alternative way,
         /// I'll be happy to hear it.
         /// </summary>
+        /// <remarks>Patched by Fabian Korak</remarks>
         /// <param name="args"></param>
         static int Main(string[] args)
         {
@@ -40,9 +41,29 @@ namespace pythonemcc
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.CreateNoWindow = true;
             psi.UseShellExecute = false;
-            if (!File.Exists("c:\\python27\\python.exe")) // TODO: Remove this hardcoded check!
-                Console.WriteLine("Error: c:\\python27\\python.exe does not exist! Recompile vs-tool with a proper path to python!");
-            psi.FileName = "c:\\python27\\python.exe"; // On Win7, it seems just having here "python" works, but not on Vista.
+
+            //Get the windows PATH: http://stackoverflow.com/questions/5578385/assembly-searchpath-via-path-environment
+            string sysPATH = System.Environment.GetEnvironmentVariable("PATH");
+            var parsedPATH = sysPATH.Split(';');
+
+            foreach (var filePATH in parsedPATH)
+            {
+                //We need to search for something containing python2, so it doesn't work on computers with python3 in the path
+                if (Regex.IsMatch(filePATH, @"python2+",RegexOptions.IgnoreCase))
+                {
+                    psi.FileName = filePATH;
+                    break;
+                }
+
+            }
+
+            //If there is nothing with Python in the path just go for a default path
+            if (psi.FileName == "")
+            {
+                if (!File.Exists("c:\\python27\\python.exe"))
+                    Console.WriteLine("Error: c:\\python27\\python.exe does not exist! Recompile vs-tool with a proper path to python!");
+                psi.FileName = "c:\\python27\\python.exe"; 
+            } // On Win7, it seems just having here "python" works, but not on Vista.
             // We assume that the 'emcc' python executable and this application reside in the
             // same directory.
             // http://stackoverflow.com/questions/837488/how-can-i-get-the-applications-path-in-net-in-a-console-app
