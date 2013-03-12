@@ -52,6 +52,11 @@ namespace pythonemcc
                 if (Regex.IsMatch(filePATH, @"python2+",RegexOptions.IgnoreCase))
                 {
                     psi.FileName = filePATH;
+                    //The file needs to point towards python.exe, since we use that directly
+                    if (!psi.FileName.EndsWith(".exe"))
+                    {
+                        psi.FileName += "\\python.exe";
+                    }
                     break;
                 }
 
