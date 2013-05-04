@@ -30,7 +30,6 @@
     <MinGWPath Condition="'$(MinGWPath)' == ''">$(MINGW_BIN)</MinGWPath>
     <EmccPath Condition="'$(EmccPath)' == ''">$(EMCC_BIN)</EmccPath>
     <NaclPath Condition="'$(NaclPath)' == ''">$(NACL_BIN)</NaclPath>
-    <MSLinkExe Condition="'$(MSLinkExe)' == ''">$(VCInstallDir)\BIN\link.exe</MSLinkExe>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'emcc' ">$(ClangPath);$(EmccPath);$(PATH)</ExecutablePath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'clang' ">$(ClangPath);$(PATH)</ExecutablePath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'mingw'">$(MinGWPath);$(PATH)</ExecutablePath>

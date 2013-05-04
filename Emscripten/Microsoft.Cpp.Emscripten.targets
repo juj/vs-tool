@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(VCTargetsPath)\Platforms\Emscripten\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Emscripten\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
-<!--
+  <!--
   <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
   <UsingTask TaskName="GCCLink" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" />
   <UsingTask TaskName="GCCLib" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\Build.CPPTasks.dll" /> -->
