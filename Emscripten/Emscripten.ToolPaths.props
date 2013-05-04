@@ -28,7 +28,7 @@
 
     <ClangPath Condition="'$(ClangPath)' == ''">$(CLANG_BIN)</ClangPath>
     <MinGWPath Condition="'$(MinGWPath)' == ''">$(MINGW_BIN)</MinGWPath>
-    <EmccPath Condition="'$(EmccPath)' == ''">$(EMCC_BIN)</EmccPath>
+    <EmccPath Condition="'$(EmccPath)' == ''">$(EMSCRIPTEN)</EmccPath>
     <NaclPath Condition="'$(NaclPath)' == ''">$(NACL_BIN)</NaclPath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'emcc' ">$(ClangPath);$(EmccPath);$(PATH)</ExecutablePath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'clang' ">$(ClangPath);$(PATH)</ExecutablePath>

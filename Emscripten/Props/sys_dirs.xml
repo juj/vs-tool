@@ -18,5 +18,5 @@
                       Category="VC++" Separator=";" Subtype="folder" />
 
   <StringProperty Name="ClangPath" Category="ToolDirs" DisplayName="Clang Compiler Path" Description="Specify the directory where the Clang compiler and toolchain executables reside in. See http://clang.llvm.org/.  By default the environment variable CLANG_BIN is read." />
-  <StringProperty Name="EmccPath" Category="ToolDirs" DisplayName="Emcc Linker Path" Description="Specify the directory where the emcc linker resides in. See https://github.com/kripken/emscripten. By default the environment variable EMCC_BIN is read." />
+  <StringProperty Name="EmccPath" Category="ToolDirs" DisplayName="Emcc Linker Path" Description="Specify the directory where the emcc linker resides in. See https://github.com/kripken/emscripten. By default the environment variable EMSCRIPTEN is read." />
 </Rule>
