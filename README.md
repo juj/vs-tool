@@ -45,6 +45,5 @@ Emscripten is a compiler/linker that allows you to compile C/C++ code to JavaScr
 
 1. Follow these instructions to set up Emscripten: https://github.com/kripken/emscripten/wiki/Tutorial .
 2. Emscripten requires Clang to be set up. Follow the above instructions to set up Clang for vs-tool.
-3. Copy emcc\emccstub.exe into the folder where you cloned Emscripten, so that emccstub.exe resides in the same folder than the file emcc.
-4. Set EMCC_BIN environment variable to point to the directory where the file emcc and emccstub.exe are located in. 
-5. Alternatively, in Visual Studio, go to Project Properties -> Toolchain Directories -> Emcc Linker Path, and specify there the directory where the files emcc and emccstub.exe are located in.
+4. Set EMSCRIPTEN environment variable to point to the emscripten root directory (location of emcc.bat et al) 
+5. Alternatively, in Visual Studio, go to Project Properties -> Toolchain Directories -> Emcc Linker Path, and specify there the directory to the emscripten root directory.
