@@ -1,0 +1,2 @@
+@call node %*
+@pause

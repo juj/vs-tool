@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
-    <LocalDebuggerCommand>$(EMSCRIPTEN)\nodepause.bat</LocalDebuggerCommand>
+    <LocalDebuggerCommand>$(VCTargetsPath)\Platforms\Emscripten\run_in_node.bat</LocalDebuggerCommand>
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
