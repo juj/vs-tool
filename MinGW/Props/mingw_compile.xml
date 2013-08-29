@@ -130,7 +130,7 @@
 
   <BoolProperty Name="AssemblerOutput" DisplayName="Generate Assembler Output (-S)" Description="If enabled, does not output machine code, but a human-readable assembly of the generated code. TODO: GENERATE .s file instead." Category="Output Files" Switch="S" />
   
-  <StringListProperty Subtype="folder" Name="SystemIncludeDirectories" Category="General" Visible="false" Switch="Xclang -isystem" />
+  <StringListProperty Subtype="folder" Name="SystemIncludeDirectories" Category="General" Visible="false" Switch="isystem" />
 
   <StringListProperty Name="SystemPreprocessorDefinitions" Visible="false" Category="Preprocessor" DisplayName="System Preprocessor Definitions (-D)" Switch="D" />
   <StringListProperty Name="SystemPreprocessorUndefinitions" Visible="false" Category="Preprocessor" DisplayName="System Preprocessor Undefinitions (-U)" Switch="U" />
