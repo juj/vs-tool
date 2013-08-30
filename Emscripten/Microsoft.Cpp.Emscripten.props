@@ -48,7 +48,8 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
-    <LocalDebuggerCommand>$(VCTargetsPath)\Platforms\Emscripten\run_in_node.bat</LocalDebuggerCommand>
+    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_JSENGINE)' != ''">$(EMSCRIPTEN_JSENGINE)</LocalDebuggerCommand>
+    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_JSENGINE)' == ''">$(VCTargetsPath)\Platforms\Emscripten\run_in_node.bat</LocalDebuggerCommand>
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
@@ -66,7 +67,8 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>
-    <LocalDebuggerCommand>$(EMCC_WEBBROWSER_EXE)</LocalDebuggerCommand>
+    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' != ''">$(EMSCRIPTEN_BROWSER)</LocalDebuggerCommand>
+    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' == ''">explorer.exe</LocalDebuggerCommand>
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
