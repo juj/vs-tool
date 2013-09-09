@@ -16,15 +16,7 @@
     <FrameworkSdkDir Condition="'$(FrameworkSdkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</FrameworkSdkDir>
 
     <!-- Present in ALL Emscripten builds, and use the '-Xclang -isystem' prefix. -->
-    <EmscriptenIncludeDir>
-      $(EmscriptenDir)\system\include;
-      $(EmscriptenDir)\system\include\bsd;
-      $(EmscriptenDir)\system\include\libc;
-      $(EmscriptenDir)\system\include\libcxx;
-      $(EmscriptenDir)\system\include\gfx;
-      $(EmscriptenDir)\system\include\net;
-      $(EmscriptenDir)\system\include\SDL
-    </EmscriptenIncludeDir>
+    <EmscriptenIncludeDir>$(EMSCRIPTEN)\system\local\include;$(EMSCRIPTEN)\system\include\compat;$(EMSCRIPTEN)\system\include\libcxx;$(EMSCRIPTEN)\system\include;$(EMSCRIPTEN)\system\include\emscripten;$(EMSCRIPTEN)\system\include\bsd;$(EMSCRIPTEN)\system\include\libc;$(EMSCRIPTEN)\system\include\gfx;$(EMSCRIPTEN)\system\include\net;$(EMSCRIPTEN)\system\include\SDL</EmscriptenIncludeDir>
 
     <ClangPath Condition="'$(ClangPath)' == ''">$(CLANG_BIN)</ClangPath>
     <MinGWPath Condition="'$(MinGWPath)' == ''">$(MINGW_BIN)</MinGWPath>
@@ -34,7 +26,6 @@
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'clang' ">$(ClangPath);$(PATH)</ExecutablePath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'mingw'">$(MinGWPath);$(PATH)</ExecutablePath>
     <ExecutablePath Condition="'$(ExecutablePath)' == '' and '$(PlatformToolset)' == 'nacl'">$(NaclPath);$(PATH)</ExecutablePath>
-      <IncludePath Condition="'$(IncludePath)' == '' and '$(PlatformToolset)' == 'emcc'">$(EmscriptenIncludeDir)</IncludePath>
+    <IncludePath Condition="'$(IncludePath)' == '' and '$(PlatformToolset)' == 'emcc'">$(EmscriptenIncludeDir)</IncludePath>
   </PropertyGroup>
-  
 </Project>

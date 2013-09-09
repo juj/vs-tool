@@ -2,6 +2,5 @@
   <PropertyGroup>
     <SixtyFourBit Condition="'$(ProgramW6432)' != ''">true</SixtyFourBit>
     <SixtyFourBit Condition="'$(ProgramW6432)' == ''">false</SixtyFourBit>
-    <EmscriptenDir Condition="'$(EmscriptenDir)' == ''">$(EMSCRIPTEN)</EmscriptenDir>
   </PropertyGroup>
 </Project>
