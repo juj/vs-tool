@@ -2,8 +2,11 @@
   <PropertyGroup>    
     <PlatformToolsetVersion>1</PlatformToolsetVersion>
     <PlatformShortName>emcc</PlatformShortName>
-    <GccCompiler>emcc.bat</GccCompiler>
-    <GccLinker>emcc.bat</GccLinker>
-    <GccLibrarian>emcc.bat</GccLibrarian> 
+    <GccCompiler Condition="'$(EMSCRIPTEN)' != ''">$(EMSCRIPTEN)\emcc.bat</GccCompiler>
+    <GccLinker Condition="'$(EMSCRIPTEN)' != ''">$(EMSCRIPTEN)\emcc.bat</GccLinker>
+    <GccLibrarian Condition="'$(EMSCRIPTEN)' != ''">$(EMSCRIPTEN)\emcc.bat</GccLibrarian>
+    <GccCompiler Condition="'$(EMSCRIPTEN)' == ''">emcc.bat</GccCompiler>
+    <GccLinker Condition="'$(EMSCRIPTEN)' == ''">emcc.bat</GccLinker>
+    <GccLibrarian Condition="'$(EMSCRIPTEN)' == ''">emcc.bat</GccLibrarian>
   </PropertyGroup>
 </Project>
