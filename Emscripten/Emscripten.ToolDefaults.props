@@ -33,7 +33,7 @@
       <SystemPreprocessorDefinitions Condition="'%(ClCompile.SystemPreprocessorDefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">EMSCRIPTEN;__STDC__</SystemPreprocessorDefinitions>
       <SystemPreprocessorUndefinitions Condition="'%(ClCompile.SystemPreprocessorUndefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">_WIN32;WIN32;__i386__;__x86_64__;__i386;__x86_64;__SSE__;__SSE2__;__MMX__;X87_DOUBLE_ROUNDING;HAVE_GCC_ASM_FOR_X87;__STRICT_ANSI__;__CYGWIN__;__APPLE__</SystemPreprocessorUndefinitions>
       <GenerateDependencyFile>true</GenerateDependencyFile>
-      <DependencyFileName>$(IntDir)%(FileName).d</DependencyFileName>
+      <DependencyFileName>"$(IntDir)%(FileName).d"</DependencyFileName>
       <!--      <EmscriptenCompileFlags Condition="'%(ClCompile.EmscriptenCompileFlags)' == '' and '$(PlatformToolset)' == 'emcc'">-c -m32 -Xclang -triple=i386-pc-linux-gnu -nostdinc -Xclang -nobuiltininc -Xclang -nostdinc++ -Xclang -nostdsysteminc -emit-llvm</EmscriptenCompileFlags> -->
       <TargetArchitecture        Condition="'%(ClCompile.TargetArchitecture)'         == ''">NotSet</TargetArchitecture>
     </ClCompile>
