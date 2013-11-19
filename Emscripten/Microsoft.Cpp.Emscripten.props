@@ -68,7 +68,7 @@
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>
     <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' != ''">$(EMSCRIPTEN_BROWSER)</LocalDebuggerCommand>
-    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' == ''">explorer.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' == ''">$(VCTargetsPath)\Platforms\Emscripten\run_in_browser.bat</LocalDebuggerCommand>
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
