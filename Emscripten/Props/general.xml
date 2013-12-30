@@ -73,14 +73,14 @@
                 Description="Specifies the type of output this configuration generates."
                 Category="ProjectDefaults"
                 F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
-    <EnumValue Name="Application" DisplayName="Application (.js)" />
+    <EnumValue Name="Application" DisplayName="Application (.js or .html)" />
     <!--
     <EnumValue Name="StaticLibrary" DisplayName="Static Library (.o)" />
     <EnumValue Name="StaticLibraryA" DisplayName="Static Library (libxxx.a)" />
     <EnumValue Name="StaticLibraryLib" DisplayName="Static Library (.lib)" />
     <EnumValue Name="StaticLibraryBc" DisplayName="Static LLVM Bitcode Library (.bc)" /> -->
     <EnumValue Name="StaticLibrary" DisplayName="Static LLVM Bitcode Library (.bc)" />
-    <EnumValue Name="HTMLPage" DisplayName="HTML with Embedded JS (.html)" />
+<!--    <EnumValue Name="HTMLPage" DisplayName="HTML with Embedded JS (.html)" /> -->
   </EnumProperty>
   
   <EnumProperty Name="CLRSupport" DisplayName="Common Language Runtime Support"

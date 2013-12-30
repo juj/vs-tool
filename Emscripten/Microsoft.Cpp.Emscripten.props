@@ -10,42 +10,14 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <GenerateManifest>false</GenerateManifest>  
   </PropertyGroup>
-<!--
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
-    <LibCompiled>true</LibCompiled>
-    <TargetExt>.o</TargetExt>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryA'">
-    <LibCompiled>true</LibCompiled>
-    <TargetExt>.a</TargetExt>
-    <TargetName>lib$(ProjectName)</TargetName>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryBc'">
+  <PropertyGroup Condition="'$(TargetExt)' == '.bc' or '$(ConfigurationType)' == 'StaticLibrary'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.bc</TargetExt>
     <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
   </PropertyGroup>
-  
--->
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
-    <LibCompiled>true</LibCompiled>
-    <TargetExt>.bc</TargetExt>
-    <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
-  </PropertyGroup>
-<!--
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibraryLib'">
-    <LibCompiled>true</LibCompiled>
-    <TargetExt>.lib</TargetExt>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
-    <LibCompiled>true</LibCompiled>
-    <TargetExt>.dll</TargetExt>
-  </PropertyGroup>
--->
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application'">
+  <PropertyGroup Condition="'$(TargetExt)' == '.js'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
     <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_JSENGINE)' != ''">$(EMSCRIPTEN_JSENGINE)</LocalDebuggerCommand>
@@ -53,18 +25,8 @@
     <TargetPath Condition="'$(TargetPath)' == ''">$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
-<!--
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and ('$(PlatformToolset)' == 'clang' or '$(PlatformToolset)' == 'mingw')">
-    <LinkCompiled>true</LinkCompiled>
-    <TargetExt>.exe</TargetExt>
-  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and '$(PlatformToolset)' == 'nacl'">
-    <LinkCompiled>true</LinkCompiled>
-    <TargetExt>.nexe</TargetExt>
-  </PropertyGroup>
--->
-  <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
+  <PropertyGroup Condition="'$(TargetExt)' == '.html'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>
     <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' != ''">$(EMSCRIPTEN_BROWSER)</LocalDebuggerCommand>
