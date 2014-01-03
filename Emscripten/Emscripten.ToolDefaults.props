@@ -59,7 +59,6 @@
     <Link>
       <LinkerOptimizationLevel  Condition="'%(Link.LinkerOptimizationLevel)'    == ''">OptimizationNotSet</LinkerOptimizationLevel>
       <RunClosureCompiler  Condition="'%(Link.RunClosureCompiler)'    == ''">false</RunClosureCompiler>
-      <RunMinify  Condition="'%(Link.RunMinify)'    == ''">false</RunMinify>
     </Link>
   </ItemDefinitionGroup>
 
@@ -74,7 +73,6 @@
     <Link>
       <LinkerOptimizationLevel  Condition="'%(Link.LinkerOptimizationLevel)'    == ''">O3</LinkerOptimizationLevel>
       <RunClosureCompiler  Condition="'%(Link.RunClosureCompiler)'    == ''">true</RunClosureCompiler>
-      <RunMinify  Condition="'%(Link.RunMinify)'    == ''">true</RunMinify>
     </Link>    
   </ItemDefinitionGroup>
 
@@ -86,6 +84,7 @@
 
       <AdditionalDependencies     Condition="'%(Link.AdditionalDependencies)'       == ''"></AdditionalDependencies>
 
+      <DisableMinify  Condition="'%(Link.DisableMinify)'    == ''">false</DisableMinify>
       <TypedArrays  Condition="'%(Link.TypedArrays)'    == ''">NotSet</TypedArrays>
       <IgnoreDynamicLinking  Condition="'%(Link.IgnoreDynamicLinking)'    == ''">false</IgnoreDynamicLinking>
 

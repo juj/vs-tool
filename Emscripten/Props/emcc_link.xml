@@ -41,7 +41,7 @@
   </EnumProperty>
 
   <BoolProperty Name="RunClosureCompiler" DisplayName="Run Closure Compiler (--closure)" Description="If true, the Closure Compiler is run as part of the build." Category="General" Switch="-closure 1" />
-  <BoolProperty Name="RunMinify" DisplayName="Minify JavaScript Code (--minify)" Description="If true, a minification process will be executed for the generated JavaScript code." Category="General" Switch="-minify 1" />
+  <BoolProperty Name="DisableMinify" DisplayName="Disable JavaScript Code Minification (--minify 0)" Description="If true, the JS minification process will be skipped." Category="General" Switch="-minify 0" />
   <BoolProperty Name="IgnoreDynamicLinking" DisplayName="Ignore Dynamic Linking" Description="Normally emcc will treat dynamic linking like static linking, by linking in the code from the dynamic library. This fails if the same dynamic library is linked more than once. With this option, dynamic linking is ignored, which allows the build system to proceed without errors. However, you will need to manually link to the shared libraries later on yourself.Disregards dynamic library linkingminification process will be executed for the generated JavaScript code." Category="General" Switch="-ignore-dynamic-linking" />
 
   <StringListProperty Subtype="file" Name="PreJsFile" DisplayName="Pre-Add JavaScript File (--pre-js)" Description="Specifies a .js file to embed to the beginning of the generated script file, before running optimizations on the file." Category="Input" Switch="-pre-js " />
