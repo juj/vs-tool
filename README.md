@@ -14,13 +14,15 @@ Features
 
 Important! At the current stage, the vs-tool plugin should be considered experimental and hackish in nature. This means that when you update to a newer version of the plugin, solutions that use vs-tool CAN LOSE previously set configuration in the solution/project property pages, or even completely FAIL to load into Visual Studio. You were warned.
 
-If you want to help with the project, please contribute with bug reports and patches. Work on this project is done unpaid, at my own expense, on my free time, if I happen to have a bit of spare time on my hands. If you think vs-tool is crap, or get frustrated that I don't fix your bugs - please go away, I don't want to hear it.
+If you want to help with the project, please contribute with bug reports and patches.
 
 Plugin Installation
 -------------------
 
-1. Copy the vs-tool folder from this repository to C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\vs-tool (or the corresponding location where MSBuild exists on your system)
-2. To enable an existing solution to be built via vs-tool, create a a platform for it from Configuration Manager -> Active Solution Platform -> New... -> vs-tool.
+For each <i>platform</i> you are interested in using (Clang, Emscripten, MinGW and/or NaCl), do the following:
+
+1. Copy the folder <i>platform</i>\ from this repository to C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\\<i>platform</i>\ (or the corresponding location where MSBuild exists on your system)
+2. To enable an existing solution to be built via vs-tool, create a a platform for it from Configuration Manager -> Active Solution Platform -> New... -> <i>platform</i>.
 3. To choose the toolchain to build with, edit the dropdown list at Project Properties -> General -> Platform Toolset.
 
 Setup for MinGW
