@@ -58,7 +58,6 @@
     </ClCompile>
     <Link>
       <LinkerOptimizationLevel  Condition="'%(Link.LinkerOptimizationLevel)'    == ''">OptimizationNotSet</LinkerOptimizationLevel>
-      <RunClosureCompiler  Condition="'%(Link.RunClosureCompiler)'    == ''">false</RunClosureCompiler>
     </Link>
   </ItemDefinitionGroup>
 
@@ -72,7 +71,6 @@
 
     <Link>
       <LinkerOptimizationLevel  Condition="'%(Link.LinkerOptimizationLevel)'    == ''">O3</LinkerOptimizationLevel>
-      <RunClosureCompiler  Condition="'%(Link.RunClosureCompiler)'    == ''">true</RunClosureCompiler>
     </Link>    
   </ItemDefinitionGroup>
 
