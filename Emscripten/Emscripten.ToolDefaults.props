@@ -82,7 +82,6 @@
 
       <AdditionalDependencies     Condition="'%(Link.AdditionalDependencies)'       == ''"></AdditionalDependencies>
 
-      <DisableMinify  Condition="'%(Link.DisableMinify)'    == ''">false</DisableMinify>
       <TypedArrays  Condition="'%(Link.TypedArrays)'    == ''">NotSet</TypedArrays>
       <IgnoreDynamicLinking  Condition="'%(Link.IgnoreDynamicLinking)'    == ''">false</IgnoreDynamicLinking>
 
