@@ -28,9 +28,9 @@
   <EnumProperty Name="LinkerOptimizationLevel" DisplayName="Optimization" Category="General">
     <EnumValue Name="OptimizationNotSet" DisplayName="Not set (default to -O0)" />
     <EnumValue Name="O0" DisplayName="Disable Optimizations" Description="No optimizations (default)" Switch="O0" />
-    <EnumValue Name="O1" DisplayName="Simple Optimizations" Switch="O1" />
-    <EnumValue Name="O2" DisplayName="Relooper + Closure Compiler" Switch="O2" />
-    <EnumValue Name="O3" DisplayName="Unsafe Optimizations" Switch="O3" />
+    <EnumValue Name="O1" DisplayName="LLVM -O1, asm.js, relooping, disable exceptions and emcc system assertions, enable aliasing function pointers" Switch="O1" />
+    <EnumValue Name="O2" DisplayName="In addition to -O1: LLVM -O2" Switch="O2" />
+    <EnumValue Name="O3" DisplayName="In addition to -O2: LLVM -O3, Run Closure, LLVM LTO, force aligned memory, truncate doubles to floats on loads and stores, substitute double for int64" Switch="O3" />
   </EnumProperty>
 
   <EnumProperty Name="TypedArrays" DisplayName="Typed Arrays" Description="Specifies the compilation mode for typed arrays. See https://github.com/kripken/emscripten/wiki/Code-Generation-Modes." Category="General">
