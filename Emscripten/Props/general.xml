@@ -73,7 +73,8 @@
                 Description="Specifies the type of output this configuration generates."
                 Category="ProjectDefaults"
                 F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
-    <EnumValue Name="Application" DisplayName="Application (.js or .html)" />
+    <EnumValue Name="Application" DisplayName="Browser Application (.html)" />
+    <EnumValue Name="JSApplication" DisplayName="Console Application (.js)" />
     <!--
     <EnumValue Name="StaticLibrary" DisplayName="Static Library (.o)" />
     <EnumValue Name="StaticLibraryA" DisplayName="Static Library (libxxx.a)" />

@@ -11,13 +11,24 @@
     <GenerateManifest>false</GenerateManifest>  
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetExt)' == '.bc' or '$(ConfigurationType)' == 'StaticLibrary'">
+  <!-- Default file suffix extensions for different configuration types. The property sheets are based on Windows defaults, so recognize MS default suffixes. -->
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary' and ('$(TargetExt)' == '' or '$(TargetExt)' == '.lib')">
+    <TargetExt>.bc</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'Application' and ('$(TargetExt)' == '' or '$(TargetExt)' == '.exe')">
+    <TargetExt>.html</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'JSApplication' and ('$(TargetExt)' == '' or '$(TargetExt)' == '.exe')">
+    <TargetExt>.js</TargetExt>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'StaticLibrary'">
     <LibCompiled>true</LibCompiled>
     <TargetExt>.bc</TargetExt>
     <GenerateLLVMByteCode>true</GenerateLLVMByteCode>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetExt)' == '.js'">
+  <PropertyGroup Condition="'$(TargetExt)' == '.js' or '$(ConfigurationType)' == 'JSApplication'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.js</TargetExt>
     <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_JSENGINE)' != ''">$(EMSCRIPTEN_JSENGINE)</LocalDebuggerCommand>
@@ -26,7 +37,7 @@
     <LocalDebuggerCommandArguments>$(TargetPath)</LocalDebuggerCommandArguments>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetExt)' == '.html'">
+  <PropertyGroup Condition="'$(TargetExt)' == '.html' and '$(ConfigurationType)' == 'Application'">
     <LinkCompiled>true</LinkCompiled>
     <TargetExt>.html</TargetExt>
     <LocalDebuggerCommand Condition="'$(EMSCRIPTEN_BROWSER)' != ''">$(EMSCRIPTEN_BROWSER)</LocalDebuggerCommand>
