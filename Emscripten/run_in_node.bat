@@ -1,2 +1,2 @@
-@call node %*
+@call node "%*"
 @pause
