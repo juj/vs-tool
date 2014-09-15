@@ -2,10 +2,11 @@
   <Import Project="$(VCTargetsPath)\Platforms\Emscripten\ImportBefore\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Emscripten\ImportBefore')" />
   <Import Project="$(VCTargetsPath)\Microsoft.CppCommon.targets" />
 
-  <UsingTask TaskName="GCCCompile" AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
-  <UsingTask TaskName="GCCLink"    AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
-  <UsingTask TaskName="GCCLib"     AssemblyFile="$(VCTargetsPath)\Platforms\Emscripten\vs-android.Build.CPPTasks.Android.dll" />
-  <UsingTask TaskName="VCMessage"  AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <UsingTask TaskName="GCCCompile" AssemblyFile="D:\Dev\VS-Android\trunk\MSBuild\vs-android.Build.CPPTasks.Android\2013\bin\Debug\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLink" AssemblyFile="D:\Dev\VS-Android\trunk\MSBuild\vs-android.Build.CPPTasks.Android\2013\bin\Debug\vs-android.Build.CPPTasks.Android.dll" />
+  <UsingTask TaskName="GCCLib" AssemblyFile="D:\Dev\VS-Android\trunk\MSBuild\vs-android.Build.CPPTasks.Android\2013\bin\Debug\vs-android.Build.CPPTasks.Android.dll" />
+
+  <UsingTask TaskName="VCMessage" AssemblyName="Microsoft.Build.CppTasks.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
 
   <PropertyGroup>
     <TrackFileAccess Condition="'$(TrackFileAccess)' == ''">true</TrackFileAccess>
@@ -23,8 +24,14 @@
         <CompileAs                    Condition="('%(ClCompile.CompileAs)' == 'Default' and '%(ClCompile.Extension)' == '.asm')">CompileAsAsm</CompileAs>
         <CompileAs                    Condition="('%(ClCompile.CompileAs)' == 'Default' and ('%(ClCompile.Extension)' != '.c' and '%(ClCompile.Extension)' != '.s' and '%(ClCompile.Extension)' != '.asm'))">CompileAsCpp</CompileAs>
         <MinimalRebuildFromTracking   Condition="'$(BuildType)' != 'Build' or '$(ForceRebuild)' == 'true'">false</MinimalRebuildFromTracking>
-		    <MinimalRebuildFromTracking   Condition="'%(ClCompile.MinimalRebuildFromTracking)' == '' and '$(BuildType)' == 'Build' and '$(ForceRebuild)' != 'true'">true</MinimalRebuildFromTracking>
         <BrowseInformation>false</BrowseInformation>
+      </ClCompile>
+    </ItemGroup>
+
+    <!-- Enable MinimalRebuildFromTracking for VS2012. VS2010 didn't require this for some reason. -->
+    <ItemGroup Condition="$(VisualStudioVersion) != '10.0'">
+      <ClCompile>
+        <MinimalRebuildFromTracking   Condition="'%(ClCompile.MinimalRebuildFromTracking)' == '' and '$(BuildType)' == 'Build' and '$(ForceRebuild)' != 'true'">true</MinimalRebuildFromTracking>
       </ClCompile>
     </ItemGroup>
 
@@ -59,7 +66,7 @@
        ******************************************************************************************* -->
   <Target Name="Lib"
           Condition="'@(Lib)' != ''">
-    
+
     <ItemGroup>
       <Lib>
         <MinimalRebuildFromTracking Condition="'%(Lib.MinimalRebuildFromTracking)' == '' and '$(BuildType)' == 'Build' and '$(ForceRebuild)' != 'true'">true</MinimalRebuildFromTracking>
@@ -92,9 +99,9 @@
     </GCCLib>
 
     <Message Condition="'$(LibSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
-    
+
   </Target>
-  
+
   <!-- *******************************************************************************************
         Link
        ******************************************************************************************* -->
@@ -131,35 +138,36 @@
 
         AcceptableNonZeroExitCodes     ="%(Link.AcceptableNonZeroExitCodes)"
 
-        EchoCommandLines               ="%(Link.EchoCommandLines)"        
-        GCCToolPath                    ="$(GccLinker)"        
+        EchoCommandLines               ="%(Link.EchoCommandLines)"
+        GCCToolPath                    ="$(GccLinker)"
         PropertyXmlFile                ="$(VCTargetsPath)\Platforms\Emscripten\Props\emcc_link.xml"
     >
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </GCCLink>
 
     <Message Condition="'$(LinkSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
-    
+
   </Target>
 
   <!-- Override the Microsoft.CppBuild.targets stuff -->
   <Import Project="$(VCTargetsPath)\Platforms\Emscripten\Emscripten.CppBuild.targets" />
-  
-	
-	
+
+
+
   <!-- *******************************************************************************************
         PlatformPrepareForBuild target
        ******************************************************************************************* -->
-  
+
   <Target Name="PlatformPrepareForBuild" DependsOnTargets="$(PlatformPrepareForBuildDependsOn)">
-    <PropertyGroup>
+    <!-- For VS2012. $(TargetName) doesn't seem to be defined where TargetPath is setup in the MS scripts. Crude fix for it. -->
+    <PropertyGroup Condition="$(VisualStudioVersion) != '10.0'">
       <TargetPath>$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
     </PropertyGroup>
+
+    <Error Condition="$(VisualStudioVersion) != '10.0' and $(VisualStudioVersion) != '11.0' and $(VisualStudioVersion) != '12.0'"
+           Text="Unknown version of Visual Studio: $(VisualStudioVersion)" ></Error>
   </Target>
-	
+
   <Import Project="$(VCTargetsPath)\Platforms\Emscripten\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Emscripten.$(PlatformToolset).targets" Condition="(exists('$(VCTargetsPath)\Platforms\Emscripten\PlatformToolsets\$(PlatformToolset)\Microsoft.Cpp.Emscripten.$(PlatformToolset).targets'))" />
   <Import Project="$(VCTargetsPath)\Platforms\Emscripten\ImportAfter\*.targets" Condition="Exists('$(VCTargetsPath)\Platforms\Emscripten\ImportAfter')" />
 </Project>
-
-
-
