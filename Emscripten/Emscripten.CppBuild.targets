@@ -3,6 +3,7 @@
     <UseDefaultProjectTools>false</UseDefaultProjectTools>
     <UseDefaultPropertyPageSchemas>false</UseDefaultPropertyPageSchemas>
     <UseDefaultGeneralPropertyPageSchema>false</UseDefaultGeneralPropertyPageSchema>
+	  <ToolsetTargetsFound>true</ToolsetTargetsFound>
   </PropertyGroup>
 
   <!-- *******************************************************************************************
@@ -35,6 +36,10 @@
     <!-- Property sheet specific property pages -->
     <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\usermacros.xml">
       <Context>PropertySheet</Context>
+    </PropertyPageSchema>
+
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_file.xml">
+      <Context>File</Context>
     </PropertyPageSchema>
 
     <!-- Switch view between project property based directories and environment variables -->

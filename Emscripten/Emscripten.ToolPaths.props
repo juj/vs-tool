@@ -1,19 +1,23 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <VCInstallDir>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\Setup\VC@ProductDir)</VCInstallDir>
-    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\Setup\VC@ProductDir)</VCInstallDir>
-    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VCExpress\10.0\Setup\VC@ProductDir)</VCInstallDir>
-    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VCExpress\10.0\Setup\VC@ProductDir)</VCInstallDir>
-    <VSInstallDir>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\Setup\VS@ProductDir)</VSInstallDir>
-    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\Setup\VS@ProductDir)</VSInstallDir>
-    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VCExpress\10.0\Setup\VS@ProductDir)</VSInstallDir>
-    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VCExpress\10.0\Setup\VS@ProductDir)</VSInstallDir>
-    <WindowsSdkDir Condition="'$(UseEnv)' != 'true'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</WindowsSdkDir>
-    <WindowsSdkDir Condition="'$(WindowsSdkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</WindowsSdkDir>
+    <VSInstallDir>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\12.0\Setup\VS@ProductDir)</VSInstallDir>
+    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\12.0\Setup\VS@ProductDir)</VSInstallDir>
+    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VCExpress\12.0\Setup\VS@ProductDir)</VSInstallDir>
+    <VSInstallDir Condition="'$(VSInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VCExpress\12.0\Setup\VS@ProductDir)</VSInstallDir>
+
+    <VCInstallDir>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\12.0\Setup\VC@ProductDir)</VCInstallDir>
+    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\12.0\Setup\VC@ProductDir)</VCInstallDir>
+    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VCExpress\12.0\Setup\VC@ProductDir)</VCInstallDir>
+    <VCInstallDir Condition="'$(VCInstallDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VCExpress\12.0\Setup\VC@ProductDir)</VCInstallDir>
+
+    <WindowsSdkDir Condition="'$(UseEnv)' != 'true'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.1A@InstallationFolder)</WindowsSdkDir>
+    <WindowsSdkDir Condition="'$(WindowsSdkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v8.1A@InstallationFolder)</WindowsSdkDir>
+
     <FrameworkDir Condition="'$(UseEnv)' != 'true'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework@InstallRoot)</FrameworkDir>
     <FrameworkDir Condition="'$(FrameworkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework@InstallRoot)</FrameworkDir>
-    <FrameworkSdkDir Condition="'$(UseEnv)' != 'true'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</FrameworkSdkDir>
-    <FrameworkSdkDir Condition="'$(FrameworkSdkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v7.0A@InstallationFolder)</FrameworkSdkDir>
+
+    <FrameworkSdkDir Condition="'$(UseEnv)' != 'true'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.1A@InstallationFolder)</FrameworkSdkDir>
+    <FrameworkSdkDir Condition="'$(FrameworkSdkDir)' == ''">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v8.1A@InstallationFolder)</FrameworkSdkDir>
 
     <!-- Present in ALL Emscripten builds, and use the '-Xclang -isystem' prefix. -->
     <EmscriptenIncludeDir>$(EMSCRIPTEN)\system\local\include;$(EMSCRIPTEN)\system\include\compat;$(EMSCRIPTEN)\system\include\libcxx;$(EMSCRIPTEN)\system\include;$(EMSCRIPTEN)\system\include\emscripten;$(EMSCRIPTEN)\system\include\bsd;$(EMSCRIPTEN)\system\include\libc;$(EMSCRIPTEN)\system\include\gfx;$(EMSCRIPTEN)\system\include\net;$(EMSCRIPTEN)\system\include\SDL</EmscriptenIncludeDir>
