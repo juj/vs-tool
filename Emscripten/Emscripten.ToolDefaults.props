@@ -42,9 +42,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
 
-  <!-- Visual Studio version. A lone install of VS2010 doesn't provide this variable. -->
-  <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-
   <!-- Compiler defaults. Additions for Visual Studio 2012 -->
   <ItemDefinitionGroup Condition="$(VisualStudioVersion) != '10.0'">
     <ClCompile>
