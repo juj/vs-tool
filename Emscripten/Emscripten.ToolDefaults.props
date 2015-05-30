@@ -1,14 +1,14 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemDefinitionGroup>
     <ClCompile>
+      
+      <ObjectFileName>$(IntDir)%(FileName).o</ObjectFileName>
+      
       <PreprocessorDefinitions  Condition="'%(ClCompile.PreprocessorDefinitions)'   == ''"></PreprocessorDefinitions>
       <Warnings                 Condition="'%(ClCompile.Warnings)'                  == ''">NormalWarnings</Warnings>
       <WarningsAsErrors         Condition="'%(ClCompile.WarningsAsErrors)'          == ''">false</WarningsAsErrors>
       <WarnSystemHeaders         Condition="'%(ClCompile.WarnSystemHeaders)'          == ''">false</WarnSystemHeaders>
-      <EchoCommandLines         Condition="'%(ClCompile.EchoCommandLines)'          == ''">false</EchoCommandLines>
-
-      <ObjectFileName Condition="'%(ClCompile.ObjectFileName)'       == ''">$(IntDir)%(Filename).o</ObjectFileName>
-      <ObjectFileName>$(IntDir)%(Filename).o</ObjectFileName>
+      <EchoCommandLines         Condition="'%(ClCompile.EchoCommandLines)'          == ''">true</EchoCommandLines>
 
       <CompileAs                Condition="'%(ClCompile.CompileAs)'                 == ''">Default</CompileAs>
 
@@ -32,17 +32,28 @@
       <SystemIncludeDirectories Condition="'%(ClCompile.SystemIncludeDirectories)'  == ''">$(IncludePath)</SystemIncludeDirectories>
       <SystemPreprocessorDefinitions Condition="'%(ClCompile.SystemPreprocessorDefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">EMSCRIPTEN;__STDC__</SystemPreprocessorDefinitions>
       <SystemPreprocessorUndefinitions Condition="'%(ClCompile.SystemPreprocessorUndefinitions)' == '' and '$(PlatformToolset)' == 'emcc'">_WIN32;WIN32;__i386__;__x86_64__;__i386;__x86_64;__SSE__;__SSE2__;__MMX__;X87_DOUBLE_ROUNDING;HAVE_GCC_ASM_FOR_X87;__STRICT_ANSI__;__CYGWIN__;__APPLE__</SystemPreprocessorUndefinitions>
+      <PrecompiledHeader        Condition="'%(ClCompile.PrecompiledHeader)'         == ''">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderOutputFile Condition="'%(ClCompile.PrecompiledHeaderOutputFile)' == ''">$(IntDir)$(TargetName).pch.h</PrecompiledHeaderOutputFile>
+
       <GenerateDependencyFile>true</GenerateDependencyFile>
-      <DependencyFileName>"$(IntDir)%(FileName).d"</DependencyFileName>
-      <!--      <EmscriptenCompileFlags Condition="'%(ClCompile.EmscriptenCompileFlags)' == '' and '$(PlatformToolset)' == 'emcc'">-c -m32 -Xclang -triple=i386-pc-linux-gnu -nostdinc -Xclang -nobuiltininc -Xclang -nostdinc++ -Xclang -nostdsysteminc -emit-llvm</EmscriptenCompileFlags> -->
+      <DependencyFileName>$(IntDir)%(FileName).d</DependencyFileName>
+      <EmscriptenCompileFlags Condition="'%(ClCompile.EmscriptenCompileFlags)' == '' and '$(PlatformToolset)' == 'emcc'">-c -m32 -Xclang -triple=i386-pc-linux-gnu -nostdinc -Xclang -nobuiltininc -Xclang -nostdinc++ -Xclang -nostdsysteminc -emit-llvm</EmscriptenCompileFlags>
       <TargetArchitecture        Condition="'%(ClCompile.TargetArchitecture)'         == ''">NotSet</TargetArchitecture>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <!-- Compiler defaults. Additions for Visual Studio 2012 -->
+  <ItemDefinitionGroup Condition="$(VisualStudioVersion) != '10.0'">
+    <ClCompile>
+      <ProgramDataBaseFileName  Condition="'%(ClCompile.ProgramDataBaseFileName)'   == ''">$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <TrackerLogDirectory      Condition="'%(ClCompile.TrackerLogDirectory)'       == ''">$(TLogLocation)</TrackerLogDirectory>
     </ClCompile>
   </ItemDefinitionGroup>
 
   <ItemDefinitionGroup Condition="'$(PlatformToolset)' == 'emcc'">
     <ClCompile>
-      <GenerateLLVMByteCode        Condition="'%(ClCompile.GenerateLLVMByteCode)'         == ''">true</GenerateLLVMByteCode>
-      <ObjectFileName Condition="'%(ClCompile.ObjectFileName)'       == ''">$(IntDir)%(Filename).o</ObjectFileName>
+      <GenerateLLVMByteCode        Condition="'%(ClCompile.GenerateLLVMByteCode)' == ''">true</GenerateLLVMByteCode>
+      <ObjectFileName Condition="'%(ClCompile.ObjectFileName)' == ''">$(IntDir)%(FileName).o</ObjectFileName>
     </ClCompile>
   </ItemDefinitionGroup>
 
@@ -79,20 +90,31 @@
       <OutputFile                 Condition="'%(Link.OutputFile)'                   == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories Condition="'%(Link.AdditionalLibraryDirectories)' == ''"></AdditionalLibraryDirectories>
       <EchoCommandLines           Condition="'%(Link.EchoCommandLines)'             == ''">false</EchoCommandLines>
-
       <AdditionalDependencies     Condition="'%(Link.AdditionalDependencies)'       == ''"></AdditionalDependencies>
-
       <TypedArrays  Condition="'%(Link.TypedArrays)'    == ''">NotSet</TypedArrays>
       <IgnoreDynamicLinking  Condition="'%(Link.IgnoreDynamicLinking)'    == ''">false</IgnoreDynamicLinking>
-
       <SystemLibraryDirectories	  Condition="'%(Link.SystemLibraryDirectories)'     == ''">$(LibraryPath)</SystemLibraryDirectories>      
   </Link>
+  </ItemDefinitionGroup>
+
+  <!-- Linker defaults. Additions for Visual Studio 2012 -->
+  <ItemDefinitionGroup Condition="$(VisualStudioVersion) != '10.0'">
+    <Link>
+      <TrackerLogDirectory        Condition="'%(Link.TrackerLogDirectory)'          == ''">$(TLogLocation)</TrackerLogDirectory>
+    </Link>
   </ItemDefinitionGroup>
 
   <ItemDefinitionGroup>
     <Lib>      
       <OutputFile                 Condition="'%(Lib.OutputFile)'                    == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <EchoCommandLines           Condition="'%(Lib.EchoCommandLines)'              == ''">false</EchoCommandLines>      
+      <EchoCommandLines           Condition="'%(Lib.EchoCommandLines)'              == ''">false</EchoCommandLines>
+    </Lib>
+  </ItemDefinitionGroup>
+
+  <!-- Librarian defaults. Additions for Visual Studio 2012 -->
+  <ItemDefinitionGroup Condition="$(VisualStudioVersion) != '10.0'">
+    <Lib>
+      <TrackerLogDirectory        Condition="'%(Lib.TrackerLogDirectory)'           == ''">$(TLogLocation)</TrackerLogDirectory>
     </Lib>
   </ItemDefinitionGroup>
 </Project>

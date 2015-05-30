@@ -7,6 +7,12 @@
     <IntDir Condition="'$(IntDir)'=='' AND '$(IntermediateOutputPath)'!=''">$(IntermediateOutputPath)</IntDir>
     <IntDir Condition="'$(IntDir)'=='' AND '$(IntermediateOutputPath)'==''">$(Platform)\$(Configuration)\</IntDir>
     <OutDir Condition="'$(OutDir)'=='' AND '$(SolutionDir)' != ''">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <OutDir Condition="'$(OutDir)'=='' AND '$(SolutionDir)' == ''">$(IntDir)</OutDir>    
-  </PropertyGroup>	
+    <OutDir Condition="'$(OutDir)'=='' AND '$(SolutionDir)' == ''">$(IntDir)</OutDir>
+  </PropertyGroup>
+
+  <!-- VS2012 additions to the defaults. -->
+  <PropertyGroup Condition="$(VisualStudioVersion) != '10.0'">
+    <TargetName         Condition="'$(TargetName)'      == ''">$(ProjectName)</TargetName>
+    <WindowsAppContainer>false</WindowsAppContainer>
+  </PropertyGroup>
 </Project>
